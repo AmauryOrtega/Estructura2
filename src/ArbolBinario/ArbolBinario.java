@@ -5,7 +5,8 @@ public class ArbolBinario {
     /*
     Casos para eliminar
     raiz{
-        si solo tiene dos hojas, intercambia una de las dos por la raiz
+        si tiene una hoja, intercambia su posicion con esa hoja
+        si tiene dos hojas, intercambia una de las dos por la raiz
         si tiene ramas, usar uno de los metodos de abajo para intercambiar
     }
     
@@ -14,11 +15,11 @@ public class ArbolBinario {
     }
     
     hoja{
-        volverlo null
+        volver el puntero del padre null hacia esa hoja
     }
     
     Metodos que se usan para intercambiar un nodo intermedio por uno nuevo:
-        Metoto para buscar el mayor de la rama izq (Una de las hojas)
+        Metoto para buscar el mayor de la rama izq (Una de las hojas) - el que esta mas a la derecha del lado izq
         Metodo para buscar el menor de la rama derecha (Una de las hojas)
     */
     
@@ -130,7 +131,29 @@ public class ArbolBinario {
     }
     
     public void borrar(int d){
+        Nodo aux = buscar(d);
+        if(aux==null){
+            System.out.println("no existe ese nodo, no se puede eliminar");
+        }else{
+            
+        }
+    }
     
+    public Nodo mayorDeMenores(Nodo raiz){
+        Nodo aux=raiz.getDerecha();
+        Integer mayor=raiz.getDato();
+        
+        while(aux!=null){
+            aux=aux.getDerecha();
+        }
+        
+        /*
+        while(aux.getDato()>mayor){
+            aux.getDerecha();
+        }
+        */
+        System.out.println("mayor de los menores:"+aux.toString());
+        return aux;
     }
 
 }
