@@ -74,23 +74,23 @@ public class Arbol {
 
     public void insertarv2(int d) {
         Nodo nuevo = new Nodo(d);
-
         if (raiz == null) {
+            //Caso que no hayan nodos
             raiz = nuevo;
         } else {
-            Nodo actual = raiz;
+            Nodo aux = raiz;
             Nodo padre;
             while (true) {
-                padre = actual;
-                if (d < actual.getDato()) {
-                    actual = actual.getIzquierda();
-                    if (actual == null) {
+                padre = aux;
+                if (d < aux.getDato()) {
+                    aux = aux.getIzquierda();
+                    if (aux == null) {
                         padre.setIzquierda(nuevo);
                         return;
                     }
                 } else {
-                    actual = actual.getDerecha();
-                    if (actual == null) {
+                    aux = aux.getDerecha();
+                    if (aux == null) {
                         padre.setDerecha(nuevo);
                         return;
                     }
