@@ -38,13 +38,12 @@ public class Main {
                         arbol.imprimirInOrder();
                         break;
                     case 4:
-                        
+                        arbol.borrar(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el dato del nodo a borrar", "Borrar", 1)));
                         break;
                     case 5:
                         salir = true;
                         break;
                     default:
-                        
                         break;
                 }
             } catch (java.lang.NumberFormatException e) {
