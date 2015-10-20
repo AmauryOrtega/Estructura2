@@ -19,7 +19,7 @@ public class ArbolBinario {
      }
     
      Metodos que se usan para intercambiar un nodo intermedio por uno nuevo:
-     Metoto para buscar el mayor de la rama izq (Una de las hojas) - el que esta mas a la derecha del lado izq
+     (?) Metoto para buscar el mayor de la rama izq (Una de las hojas) - el que esta mas a la derecha del lado izq
      Metodo para buscar el menor de la rama derecha (Una de las hojas)
      */
     private Nodo raiz;
@@ -119,6 +119,7 @@ public class ArbolBinario {
 
     public void imprimirInOrder() {
         auxImprimirInOrder(raiz);
+        System.out.println("");
     }
 
     public void auxImprimirInOrder(Nodo raiz) {
@@ -131,19 +132,55 @@ public class ArbolBinario {
 
     public void borrar(int d) {
         Nodo aux = buscar(d);
+        Nodo auxExtra;
+
         if (aux == null) {
             System.out.println("no existe ese nodo, no se puede eliminar");
         } else {
-
+            //Nodo sin hijos
+            if (aux.getIzquierda() == null && aux.getDerecha() == null) {
+                aux = null;
+            } else {
+                //Nodo con dos subarboles
+                if (aux.getIzquierda() != null && aux.getDerecha() != null) {
+                    if (aux == raiz) { //Raiz con dos hijos o sub arboles
+                        auxExtra = aux.getIzquierda();
+                        aux = aux.getDerecha();
+                        //Se busca el menor de los mayores
+                        while (aux.getIzquierda() != null) {
+                            aux = aux.getIzquierda();
+                        }
+                        aux.setIzquierda(auxExtra);
+                    }else{
+                        auxExtra=aux.getIzquierda();
+                        aux=aux.getDerecha();
+                        //Se busca el menor de los mayores
+                        while (aux.getIzquierda() != null) {
+                            aux = aux.getIzquierda();
+                        }
+                        aux.setIzquierda(auxExtra);
+                    }
+                }else{
+                    //Tiene un solo hijo
+                    if(aux==raiz){//Y es raiz a la vez
+                        //Determinar donde esta el hijo
+                        if(aux.getIzquierda()!=null){
+                            aux=aux.getIzquierda();
+                        }else{
+                            aux=aux.getDerecha();
+                        }
+                    }else{
+                        //Si no es raiz y tiene un solo hijo
+                        //Determinar donde esta
+                        if(aux.getIzquierda()!=null){
+                            aux=aux.getIzquierda();
+                        }else{
+                            aux=aux.getDerecha();
+                        }
+                    }
+                }
+            }
         }
-    }
-
-    public Nodo mayorDeMenores(Nodo raiz) {
-        Nodo aux=raiz;        
-        while(aux.getDerecha()!=null){
-            aux=aux.getDerecha();
-        }
-        return aux;
     }
 
 }
