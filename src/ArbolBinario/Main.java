@@ -7,15 +7,15 @@ public class Main {
         ArbolBinario arbol = new ArbolBinario();
         boolean init = true;
         if(init){
-            arbol.insertarv2(27);
-            arbol.insertarv2(14);
-            arbol.insertarv2(7);
-            arbol.insertarv2(11);
-            arbol.insertarv2(47);
-            arbol.insertarv2(32);
-            arbol.insertarv2(59);
-            arbol.insertarv2(50);
-            arbol.insertarv2(77);
+            arbol.insertar(27);
+            arbol.insertar(14);
+            arbol.insertar(7);
+            arbol.insertar(11);
+            arbol.insertar(47);
+            arbol.insertar(32);
+            arbol.insertar(59);
+            arbol.insertar(50);
+            arbol.insertar(77);
         }
         boolean salir = false;
         while (salir != true) {
@@ -29,16 +29,18 @@ public class Main {
                         , "Arbol Binario", 3));
                 switch (op) {
                     case 1:
-                        arbol.insertarv2(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el dato del nuevo nodo", "Insertar", 1)));
+                        arbol.insertar(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el dato del nuevo nodo", "Insertar", 1)));
                         break;
                     case 2:
-                        
+                        System.out.println("buscarMan:"+arbol.buscarMan());
+                        System.out.println("--");
+                        System.out.println("buscarMin:"+arbol.buscarMin());
                         break;
                     case 3:
-                        arbol.imprimirInOrder();
+                        arbol.inOrder();
                         break;
                     case 4:
-                        arbol.borrar(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el dato del nodo a borrar", "Borrar", 1)));
+                        arbol.eliminar(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el dato del nodo a borrar", "Borrar", 1)));
                         break;
                     case 5:
                         salir = true;
