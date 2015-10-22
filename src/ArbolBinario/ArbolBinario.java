@@ -129,7 +129,12 @@ public class ArbolBinario {
             auxImprimirInOrder(raiz.getDerecha());
         }
     }
+ 
 
+    public boolean isVacio(){
+        return (raiz == null);
+    }
+    
     public void borrar(int d) {
         Nodo aux = buscar(d);
         Nodo auxExtra;
