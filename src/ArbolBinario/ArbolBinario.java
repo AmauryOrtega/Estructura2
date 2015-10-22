@@ -13,6 +13,30 @@ public class ArbolBinario {
             hijoIzquierdo = null;
             dato = 0;
         }
+
+        public ArbolBinario getHijoDerecho() {
+            return hijoDerecho;
+        }
+
+        public void setHijoDerecho(ArbolBinario hijoDerecho) {
+            this.hijoDerecho = hijoDerecho;
+        }
+
+        public ArbolBinario getHijoIzquierdo() {
+            return hijoIzquierdo;
+        }
+
+        public void setHijoIzquierdo(ArbolBinario hijoIzquierdo) {
+            this.hijoIzquierdo = hijoIzquierdo;
+        }
+
+        public int getDato() {
+            return dato;
+        }
+
+        public void setDato(int dato) {
+            this.dato = dato;
+        }
     }
 
     public nodoArbol raiz;
