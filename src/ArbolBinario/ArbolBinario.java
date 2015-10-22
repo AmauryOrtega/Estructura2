@@ -2,190 +2,165 @@ package ArbolBinario;
 
 public class ArbolBinario {
 
-    /*
-     Casos para eliminar
-     raiz{
-     si tiene una hoja, intercambia su posicion con esa hoja
-     si tiene dos hojas, intercambia una de las dos por la raiz
-     si tiene ramas, usar uno de los metodos de abajo para intercambiar
-     }
-    
-     intermedio{
-     usar uno de los metodos de abajo para intercambiar
-     }
-    
-     hoja{
-     volver el puntero del padre null hacia esa hoja
-     }
-    
-     Metodos que se usan para intercambiar un nodo intermedio por uno nuevo:
-     (?) Metoto para buscar el mayor de la rama izq (Una de las hojas) - el que esta mas a la derecha del lado izq
-     Metodo para buscar el menor de la rama derecha (Una de las hojas)
-     */
-    private Nodo raiz;
+    private class nodoArbol {
 
-    public ArbolBinario() {
-        this.raiz = null;
-    }
+        private ArbolBinario hijoDerecho;
+        private ArbolBinario hijoIzquierdo;
+        private int dato;
 
-    public ArbolBinario(int raiz) {
-        this.raiz = new Nodo(raiz, null, null);
-    }
-
-    public Nodo getRaiz() {
-        return raiz;
-    }
-
-    public void setRaiz(Nodo raiz) {
-        this.raiz = raiz;
-    }
-
-    public void insertar(int d) {
-        if (d != raiz.getDato()) {
-            Nodo aux = raiz;
-            boolean band;
-            while (aux != null) {
-                if (d < aux.getDato()) {
-                    band = true;
-                } else {//Puede aclararse para que no sean ==
-                    band = false;
-                }
-
-                if (band) {
-                    //izquierda
-                    if (aux.getIzquierda() != null) {
-                        aux = aux.getIzquierda();
-                    } else {
-                        aux.setIzquierda(new Nodo(d, null, null));
-                    }
-                } else {
-                    //derecha
-                    if (aux.getDerecha() != null) {
-                        aux = aux.getDerecha();
-                    } else {
-                        aux.setDerecha(new Nodo(d, null, null));
-                    }
-                }
-            }
-        } else {
-            System.out.println("no se puede ese valor");
+        private void nodoArbol() {
+            hijoDerecho = null;
+            hijoIzquierdo = null;
+            dato = 0;
         }
     }
 
-    public void insertarv2(int d) {
-        Nodo nuevo = new Nodo(d);
-        if (raiz == null) {
-            //Caso que no hayan nodos
-            raiz = nuevo;
-        } else {
-            Nodo aux = raiz;
-            Nodo padre;
-            while (true) {
-                padre = aux;
-                if (d < aux.getDato()) {
-                    aux = aux.getIzquierda();
-                    if (aux == null) {
-                        padre.setIzquierda(nuevo);
-                        return;
-                    }
-                } else {
-                    aux = aux.getDerecha();
-                    if (aux == null) {
-                        padre.setDerecha(nuevo);
-                        return;
-                    }
-                }
-            }
-        }
+    public nodoArbol raiz;
+
+    public void abb() {
+        nodoArbol raiz = new nodoArbol();
     }
 
-    public Nodo buscar(int d) {
-        Nodo aux = raiz;
-
-        while (aux.getDato() != d) {
-
-            if (d < aux.getDato()) {
-                aux = aux.getIzquierda();
-            } else {
-                aux = aux.getDerecha();
-            }
-
-            if (aux == null) {
-                return null;
-            }
-        }
-        return aux;
-    }
-
-    public void imprimirInOrder() {
-        auxImprimirInOrder(raiz);
-        System.out.println("");
-    }
-
-    public void auxImprimirInOrder(Nodo raiz) {
-        if (raiz != null) {
-            auxImprimirInOrder(raiz.getIzquierda());
-            System.out.print(raiz.getDato() + " - ");
-            auxImprimirInOrder(raiz.getDerecha());
-        }
-    }
- 
-
-    public boolean isVacio(){
+    //--------Extras--------
+    public boolean esVacio() {
         return (raiz == null);
     }
     
-    public void borrar(int d) {
-        Nodo aux = buscar(d);
-        Nodo auxExtra;
+    public boolean esHoja() {
+        boolean hoja = false;
+        if ((raiz.hijoIzquierdo).esVacio() && (raiz.hijoDerecho).esVacio()) {
+            hoja = true;
+        }
+        return hoja;
+    }
 
-        if (aux == null) {
-            System.out.println("no existe ese nodo, no se puede eliminar");
-        } else {
-            //Nodo sin hijos
-            if (aux.getIzquierda() == null && aux.getDerecha() == null) {
-                aux = null;
+    public boolean existe(int a) {
+        if (!esVacio()) {
+            if (a == raiz.dato) {
+                return true;
             } else {
-                //Nodo con dos subarboles
-                if (aux.getIzquierda() != null && aux.getDerecha() != null) {
-                    if (aux == raiz) { //Raiz con dos hijos o sub arboles
-                        auxExtra = aux.getIzquierda();
-                        aux = aux.getDerecha();
-                        //Se busca el menor de los mayores
-                        while (aux.getIzquierda() != null) {
-                            aux = aux.getIzquierda();
-                        }
-                        aux.setIzquierda(auxExtra);
-                    }else{
-                        auxExtra=aux.getIzquierda();
-                        aux=aux.getDerecha();
-                        //Se busca el menor de los mayores
-                        while (aux.getIzquierda() != null) {
-                            aux = aux.getIzquierda();
-                        }
-                        aux.setIzquierda(auxExtra);
-                    }
-                }else{
-                    //Tiene un solo hijo
-                    if(aux==raiz){//Y es raiz a la vez
-                        //Determinar donde esta el hijo
-                        if(aux.getIzquierda()!=null){
-                            aux=aux.getIzquierda();
-                        }else{
-                            aux=aux.getDerecha();
-                        }
-                    }else{
-                        //Si no es raiz y tiene un solo hijo
-                        //Determinar donde esta
-                        if(aux.getIzquierda()!=null){
-                            aux=aux.getIzquierda();
-                        }else{
-                            aux=aux.getDerecha();
-                        }
+                if (a < raiz.dato) {
+                    raiz.hijoIzquierdo.existe(a);
+                } else {
+                    raiz.hijoDerecho.existe(a);
+                }
+            }
+        }
+        return false;
+    }
+
+    public int cantidad() {
+        if (esVacio()) {
+            return 0;
+        } else {
+            return (1 + raiz.hijoDerecho.cantidad() + raiz.hijoIzquierdo.cantidad());
+        }
+    }
+
+    public int altura() {
+        if (esVacio()) {
+            return 0;
+        } else {
+            return (1 + Math.max(((raiz.hijoIzquierdo).altura()), ((raiz.hijoDerecho).altura())));
+        }
+    }
+
+    //--------Basicas--------
+    public void insertar(int a) {
+        if (esVacio()) {
+            nodoArbol nuevo = new nodoArbol();
+            nuevo.dato = a;
+            nuevo.hijoDerecho = new ArbolBinario();
+            nuevo.hijoIzquierdo = new ArbolBinario();
+            raiz = nuevo;
+        } else {
+            if (a > raiz.dato) {
+                (raiz.hijoDerecho).insertar(a);
+            }
+            if (a < raiz.dato) {
+                (raiz.hijoIzquierdo).insertar(a);
+            }
+        }
+    }
+    
+    public void eliminar(int a) {
+        ArbolBinario paraEliminar = buscar(a);
+        if (!paraEliminar.esVacio()) {
+            if (paraEliminar.esHoja()) {
+                paraEliminar.raiz = null;
+            } else {
+                if (!paraEliminar.raiz.hijoIzquierdo.esVacio() && !paraEliminar.raiz.hijoDerecho.esVacio()) {
+                    paraEliminar.raiz.dato = paraEliminar.raiz.hijoDerecho.buscarMin();
+                } else {
+                    if (paraEliminar.raiz.hijoIzquierdo.esVacio()) {
+                        paraEliminar.raiz = paraEliminar.raiz.hijoDerecho.raiz;
+                    } else {
+                        paraEliminar.raiz = paraEliminar.raiz.hijoIzquierdo.raiz;
                     }
                 }
             }
         }
     }
 
+    public ArbolBinario buscar(int a) {
+        ArbolBinario arbolito = null;
+        if (!esVacio()) {
+            if (a == raiz.dato) {
+                return this;
+            } else {
+                if (a < raiz.dato) {
+                    arbolito = raiz.hijoIzquierdo.buscar(a);
+                } else {
+                    arbolito = raiz.hijoDerecho.buscar(a);
+                }
+            }
+        }
+        return arbolito;
+    }
+
+    public int buscarMin() {
+        ArbolBinario arbolActual = this;
+        while (!arbolActual.raiz.hijoIzquierdo.esVacio()) {
+            arbolActual = arbolActual.raiz.hijoIzquierdo;
+        }
+        int devuelvo = arbolActual.raiz.dato;
+        //arbolActual.raiz=null;
+        return devuelvo;
+    }
+
+    public int buscarMan() {
+        ArbolBinario arbolActual = this;
+        while (!arbolActual.raiz.hijoDerecho.esVacio()) {
+            arbolActual = arbolActual.raiz.hijoDerecho;
+        }
+        int devuelvo = arbolActual.raiz.dato;
+        //arbolActual.raiz=null;
+        return devuelvo;
+    }
+
+    //--------Impresion--------
+    public void preOrder() {
+        if (!esVacio()) {
+            System.out.print(raiz.dato + ", ");
+            raiz.hijoIzquierdo.preOrder();
+            raiz.hijoDerecho.preOrder();
+        }
+    }
+
+    public void inOrder() {
+        if (!esVacio()) {
+            raiz.hijoIzquierdo.inOrder();
+            System.out.print(raiz.dato + ", ");
+            raiz.hijoDerecho.inOrder();
+        }
+    }
+
+    public void posOrder() {
+        if (!esVacio()) {
+            raiz.hijoDerecho.posOrder();
+            raiz.hijoIzquierdo.posOrder();
+            System.out.print(raiz.dato + ", ");
+
+        }
+    }
 }
