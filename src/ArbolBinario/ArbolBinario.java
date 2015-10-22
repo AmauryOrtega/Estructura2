@@ -49,24 +49,20 @@ public class ArbolBinario {
     public boolean esVacio() {
         return (raiz == null);
     }
-    
+
     public boolean esHoja() {
-        boolean hoja = false;
-        if ((raiz.hijoIzquierdo).esVacio() && (raiz.hijoDerecho).esVacio()) {
-            hoja = true;
-        }
-        return hoja;
+        return (raiz.getHijoIzquierdo()).esVacio() && (raiz.getHijoDerecho()).esVacio();
     }
 
     public boolean existe(int a) {
         if (!esVacio()) {
-            if (a == raiz.dato) {
+            if (a == raiz.getDato()) {
                 return true;
             } else {
-                if (a < raiz.dato) {
-                    raiz.hijoIzquierdo.existe(a);
+                if (a < raiz.getDato()) {
+                    raiz.getHijoIzquierdo().existe(a);
                 } else {
-                    raiz.hijoDerecho.existe(a);
+                    raiz.getHijoDerecho().existe(a);
                 }
             }
         }
@@ -77,7 +73,7 @@ public class ArbolBinario {
         if (esVacio()) {
             return 0;
         } else {
-            return (1 + raiz.hijoDerecho.cantidad() + raiz.hijoIzquierdo.cantidad());
+            return (1 + raiz.getHijoDerecho().cantidad() + raiz.getHijoIzquierdo().cantidad());
         }
     }
 
@@ -85,7 +81,7 @@ public class ArbolBinario {
         if (esVacio()) {
             return 0;
         } else {
-            return (1 + Math.max(((raiz.hijoIzquierdo).altura()), ((raiz.hijoDerecho).altura())));
+            return (1 + Math.max(((raiz.getHijoIzquierdo()).altura()), ((raiz.getHijoDerecho()).altura())));
         }
     }
 
@@ -106,7 +102,7 @@ public class ArbolBinario {
             }
         }
     }
-    
+
     public void eliminar(int a) {
         ArbolBinario paraEliminar = buscar(a);
         if (!paraEliminar.esVacio()) {
