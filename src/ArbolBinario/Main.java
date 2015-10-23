@@ -23,29 +23,42 @@ public class Main {
                 int op = Integer.parseInt(JOptionPane.showInputDialog(null,
                         "1.Insertar dato\n"
                         + "2.Buscar dato\n"
-                        + "3.Imprimir InOrden\n"
-                        + "3.Imprimir PostOrden\n"
-                        + "3.Imprimir InOrden\n"
-                        + "4.Eliminar dato\n"
-                        + "5.Salir"
+                        + "3.Eliminar dato\n"
+                        + "4.Imprimir InOrden\n"
+                        + "5.Imprimir PosOrden\n"
+                        + "6.Imprimir resumen extra\n"
+                        + "7.Salir"
                         , "Arbol Binario", 3));
                 switch (op) {
                     case 1:
                         arbol.insertar(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el dato del nuevo nodo", "Insertar", 1)));
                         break;
                     case 2:
-                        System.out.println("buscarMan:"+arbol.buscarMax());
-                        System.out.println("--");
-                        System.out.println("buscarMin:"+arbol.buscarMin());
+                        if(arbol.existe(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el dato a buscar", "Buscar", 1)))){
+                            JOptionPane.showMessageDialog(null, "El nodo si existe", "Buscar", 2);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "El nodo no existe", "Buscar", 0);
+                        }
                         break;
                     case 3:
-                        arbol.inOrder();
-                        break;
-                    case 4:
                         arbol.eliminar(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el dato del nodo a borrar", "Borrar", 1)));
                         break;
+                    case 4:
+                        arbol.inOrder();
+                        break;
                     case 5:
-                        salir = true;
+                        arbol.posOrder();
+                        break;
+                    case 6:
+                        JOptionPane.showMessageDialog(null, "El arbol tiene\n"
+                                + "Altura: "+arbol.altura()+"\n"
+                                + "Cantidad de nodos: "+arbol.cantidad()+"\n"
+                                + "Nodo max: "+arbol.max()+"\n"
+                                + "Nodo min: "+arbol.min()+"\n"
+                                , "Resumen", 2);
+                        break;
+                    case 7:
+                        salir=true;
                         break;
                     default:
                         break;
