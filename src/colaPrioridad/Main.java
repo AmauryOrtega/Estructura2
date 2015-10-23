@@ -16,7 +16,7 @@ public class Main {
                         + "4.Imprimir fechas\n"
                         + "5.Imprimir tareas de una fecha\n"
                         + "6.Salir"
-                        , "Cola de prioridad v1.0", 3));
+                        , "Cola de prioridad v1.1", 3));
                 switch (op) {
                     case 1:
                         
