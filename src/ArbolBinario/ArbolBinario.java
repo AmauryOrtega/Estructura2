@@ -143,7 +143,7 @@ public class ArbolBinario {
         while (!arbolActual.getRaiz().getHijoIzquierdo().esVacio()) {
             arbolActual = arbolActual.getRaiz().getHijoIzquierdo();
         }
-        int retorno =arbolActual.getRaiz().getDato();
+        int retorno = arbolActual.getRaiz().getDato();
         arbolActual.setRaiz(null);
         return retorno;
     }
@@ -153,7 +153,7 @@ public class ArbolBinario {
         while (!arbolActual.getRaiz().getHijoDerecho().esVacio()) {
             arbolActual = arbolActual.getRaiz().getHijoDerecho();
         }
-        int retorno =arbolActual.getRaiz().getDato();
+        int retorno = arbolActual.getRaiz().getDato();
         arbolActual.setRaiz(null);
         return retorno;
     }
@@ -162,26 +162,41 @@ public class ArbolBinario {
     public void preOrder() {
         if (!esVacio()) {
             System.out.print(raiz.dato + ", ");
-            raiz.hijoIzquierdo.preOrder();
-            raiz.hijoDerecho.preOrder();
+            raiz.getHijoIzquierdo().preOrder();
+            raiz.getHijoDerecho().preOrder();
         }
     }
 
     public void inOrder() {
         if (!esVacio()) {
-            raiz.hijoIzquierdo.inOrder();
+            raiz.getHijoIzquierdo().inOrder();
             System.out.print(raiz.dato + ", ");
-            raiz.hijoDerecho.inOrder();
+            raiz.getHijoDerecho().inOrder();
         }
     }
 
     public void posOrder() {
         if (!esVacio()) {
-            raiz.hijoDerecho.posOrder();
-            raiz.hijoIzquierdo.posOrder();
+            raiz.getHijoDerecho().posOrder();
+            raiz.getHijoIzquierdo().posOrder();
             System.out.print(raiz.dato + ", ");
-
         }
+    }
+
+    public int min() {
+        ArbolBinario arbolActual = this;
+        while (!arbolActual.getRaiz().getHijoIzquierdo().esVacio()) {
+            arbolActual = arbolActual.getRaiz().getHijoIzquierdo();
+        }
+        return arbolActual.getRaiz().getDato();
+    }
+
+    public int max() {
+        ArbolBinario arbolActual = this;
+        while (!arbolActual.getRaiz().getHijoDerecho().esVacio()) {
+            arbolActual = arbolActual.getRaiz().getHijoDerecho();
+        }
+        return arbolActual.getRaiz().getDato();
     }
 
     //--------Get/Set--------
