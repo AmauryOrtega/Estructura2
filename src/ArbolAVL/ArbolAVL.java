@@ -100,6 +100,11 @@ public class ArbolAVL {
             if (a < raiz.getDato()) {
                 (raiz.getHijoIzquierdo()).insertar(a);
             }
+            //Balanceo
+            int factorEquilibrio=raiz.getHijoDerecho().altura()-raiz.getHijoIzquierdo().altura();
+            if(factorEquilibrio!=-1 && factorEquilibrio!=1){
+                
+            }
         }
     }
 
