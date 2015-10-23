@@ -2,15 +2,15 @@ package colaPrioridad;
 
 import java.util.Calendar;
 
-public class Lista {
+public class ColaPrioridad {
 
-    protected NodoPrioridad primero;
+    private NodoPrioridad primero;
 
-    public Lista() {
+    public ColaPrioridad() {
         primero = null;
     }
 
-    public Lista(NodoPrioridad primero) {
+    public ColaPrioridad(NodoPrioridad primero) {
         this.primero = primero;
     }
 
@@ -21,15 +21,12 @@ public class Lista {
     public void setPrimero(NodoPrioridad primero) {
         this.primero = primero;
     }
-    
+
     public boolean isVacia() {
-        if (this.primero == null) {
-            return true;
-        }
-        return false;
+        return this.primero == null;
     }
 
-    //--------------FECHAS------------------
+    //--------------NODOS DE PRIORIDAD------------------
     public String imprimirListaFechas() {
         String lista = "";
 
@@ -39,16 +36,14 @@ public class Lista {
             int i = 0;
             NodoPrioridad aux = this.primero;
             while (aux != null) {
-                lista += "NodoPrioridad(" + i + ")" + " " + aux.getFecha()+ "\n";
+                lista += "NodoPrioridad(" + i + ")" + " " + aux.getFecha() + "\n";
                 aux = aux.getSiguiente();
                 i++;
             }
         }
-
         return lista;
     }
-
-    //--------------Insertar------------------
+    
     public void instertarFechaPrincipio(Calendar f) {
         if (isVacia()) {
             primero = new NodoPrioridad(f, new Cola(), null);
@@ -73,18 +68,22 @@ public class Lista {
 
         }
     }
-    
-    public void insertarFecha123(Calendar f){
-        
+
+    public void insertarFecha123(Calendar f) {
+        //Debe hacerse debido a que esta es la mas usada en BACK END
     }
 
-    public NodoPrioridad buscarPorFecha(Calendar f) {
+    public NodoPrioridad buscarNodoPrioridad(Calendar f) {
         if (isVacia()) {
             return null;
         } else {
             NodoPrioridad aux = primero;
             while (aux != null) {
-                if (aux.getFecha().equals(f)) {
+                if (aux.getFecha().compareTo(f)==0) {
+                    //Metodo comparteTo retorna
+                    // ==0-son iguales en milisegundos
+                    // <0-aux.getFecha() es antes que la fecha del parametro 
+                    // >0-aux.getFecha() es despues que la fecha del parametro 
                     return aux;
                 }
                 aux = aux.getSiguiente();
@@ -93,12 +92,13 @@ public class Lista {
         }
     }
 
-    public boolean borrarPorFecha(Calendar f) {
+    public boolean borrarNodoPrioridad(Calendar f) {
         if (isVacia()) {
             return false;
         } else {
-            NodoPrioridad borrar = buscarPorFecha(f);
+            NodoPrioridad borrar = buscarNodoPrioridad(f);
             if (borrar == primero) {
+                //Primero
                 primero = borrar.siguiente;
                 return true;
             } else {
@@ -129,51 +129,49 @@ public class Lista {
             }
         }
     }
+    //--------------FIN/ NODOS DE PRIORIDAD---------------
     
     //--------------TAREAS------------------    
-    
-    public String imprimirListaTareas(Calendar f){
-        String texto="";
+    public String imprimirListaTareas(Calendar f) {
+        String texto = "";
         return texto;
     }
-    
-    public void insertarTarea(Calendar f){
-    
+
+    public void insertarTarea(Calendar f, String tarea) {
+
     }
-    
-    public Tarea buscarTarea(Calendar f, String tarea){
+
+    public Tarea buscarTarea(Calendar f, String tarea) {
         return new Tarea();
     }
-    
-    public boolean borrarTarea(Calendar f, String tarea){
+
+    public boolean borrarTarea(Calendar f, String tarea) {
         return true;
     }
     
-    //--------------COMBINADAS------------------    
-        
-    public void agregarTarea(){ //PEDIDO (1)
-    
-    }
-    
-    public void consultarPrimerDato(){  //PEDIDO (2) - TAREA CON FECHA Y HORA MAS ANTIGUA
+    public void mostrarTarea(Tarea tarea){
         
     }
     
-    public void actualizarPrimerDato(){ //PEDIDO (3) - EXTRAER(4) PRIMERDATO Y VOLVERLO A PONER CON NEW (FECHA+?) DONDE ? ES UN PARAMETRO
-    
+    public Tarea leerTarea(){
+        return new Tarea();
     }
-    
-    public void extraerPrimerDato(){    //PEDIDO (4) - EXTRAER PRIMER DATO Y MOSTRAR SU INFO
-    
+    //--------------FIN/ TAREAS------------------    
+
+    //--------------FUNCIONES FRONT END------------------    
+    public void agregarTarea() { //PEDIDO (1)
+        
     }
-    
-    //PEDIDOS
-    /*
-    HACER FUNCIONES COMPARATIVAS PARA FECHAS
-    METODO LEER QUE TOME TODOS LOS DATOS DE UNA TAREA
-    METODO MOSTRAR QUE MUESTRE TODOS LOS DATOS DE UNA TAREA
-    METODO APLAZAR TAREA POR UN TIEMPO ? QUE PASARA POR PARAMETRO
-    ARCHIVOS
-    */
-    
+
+    public void consultarPrimerDato() {  //PEDIDO (2) - RETORNAR TAREA CON FECHA Y HORA MAS ANTIGUA
+
+    }
+
+    public void actualizarPrimerDato() { //PEDIDO (3) - EXTRAER PRIMER DATO Y VOLVERLO A PONER CON FECHA EXTENDIDA
+
+    }
+
+    public void extraerPrimerDato() {    //PEDIDO (4) - EXTRAER PRIMER DATO Y MOSTRAR SU INFO (NO VOLVER A METER EL DATO)
+
+    }
 }

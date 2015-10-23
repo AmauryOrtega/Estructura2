@@ -21,7 +21,7 @@ public class Cola {
         return nitem == 0;
     }
 
-    public void insertar(String d) {
+    public void insertarTarea(String d) {
         if (isVacia()) {
             primero = new Tarea(d, null);
             ultimo = primero;
@@ -35,7 +35,6 @@ public class Cola {
 
     public boolean quitar() {
         if (nitem == 0) {
-            System.out.println("no queda nada");
             return false;
         } else {
             primero = primero.getSiguiente();
@@ -50,13 +49,14 @@ public class Cola {
             texto="Vacio";
         }else{
             Tarea aux = primero;
+            texto+="Cola\n";
             while(aux!=null){
                 texto+=aux.toString()+"\n";
                 aux=aux.getSiguiente();
             };
         }
         
-        return new StringBuilder(texto).reverse().toString();
+        return texto;
     }
 
 }
