@@ -2,15 +2,15 @@ package colaPrioridad;
 
 import java.util.Calendar;
 
-public class Tareas {
+public class Lista {
 
     protected NodoPrioridad primero;
 
-    public Tareas() {
+    public Lista() {
         primero = null;
     }
 
-    public Tareas(NodoPrioridad primero) {
+    public Lista(NodoPrioridad primero) {
         this.primero = primero;
     }
 

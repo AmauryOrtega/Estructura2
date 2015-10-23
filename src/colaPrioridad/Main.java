@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class Main {
     public static void main(String[] args) {
-        Tareas colaP = new Tareas();
+        Lista colaP = new Lista();
         boolean salir = false;
         while (salir != true) {
             try {
