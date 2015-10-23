@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 public class Main {
     public static void main(String[] args) {
-        Lista colaP = new Lista();
+        ColaPrioridad colaP = new ColaPrioridad();
         boolean salir = false;
         while (salir != true) {
             try {
