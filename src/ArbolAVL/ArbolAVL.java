@@ -7,11 +7,13 @@ public class ArbolAVL {
         private ArbolAVL hijoDerecho;
         private ArbolAVL hijoIzquierdo;
         private int dato;
+        private int fe;
 
         private void nodoArbol() {
             hijoDerecho = null;
             hijoIzquierdo = null;
             dato = 0;
+            fe=0;
         }
 
         public ArbolAVL getHijoDerecho() {
@@ -36,6 +38,18 @@ public class ArbolAVL {
 
         public void setDato(int dato) {
             this.dato = dato;
+        }
+
+        public int getFe() {
+            return fe;
+        }
+
+        public void setFe(int fe) {
+            this.fe = fe;
+        }
+        
+        private void calcularEquilibrio() {
+            raiz.fe=raiz.getHijoDerecho().altura()-raiz.getHijoIzquierdo().altura();
         }
     }
 
@@ -92,6 +106,7 @@ public class ArbolAVL {
             nuevo.setDato(a);
             nuevo.setHijoDerecho(new ArbolAVL());
             nuevo.setHijoIzquierdo(new ArbolAVL());
+            nuevo.calcularEquilibrio();
             raiz = nuevo;
         } else {
             if (a > raiz.getDato()) {
