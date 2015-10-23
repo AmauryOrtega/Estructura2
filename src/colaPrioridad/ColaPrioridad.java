@@ -159,19 +159,19 @@ public class ColaPrioridad {
     //--------------FIN/ TAREAS------------------    
 
     //--------------FUNCIONES FRONT END------------------    
-    public void agregarTarea() { //PEDIDO (1)
-        
+    public void agregarTarea() { //PEDIDO (1) - Lanzar la excepcion cuando la fecha y hora NO es posterior a la actual
+
     }
 
     public void consultarPrimerDato() {  //PEDIDO (2) - RETORNAR TAREA CON FECHA Y HORA MAS ANTIGUA
-
+        //Hacer uso de la funcion leerTarea y buscarNodoPrioridad(Usando la fecha actual)
     }
 
     public void actualizarPrimerDato() { //PEDIDO (3) - EXTRAER PRIMER DATO Y VOLVERLO A PONER CON FECHA EXTENDIDA
-
+        
     }
 
     public void extraerPrimerDato() {    //PEDIDO (4) - EXTRAER PRIMER DATO Y MOSTRAR SU INFO (NO VOLVER A METER EL DATO)
-
+        //Hacer uso de la funcion leerTarea y buscarNodoPrioridad(Usando la fecha actual)
     }
 }
