@@ -5,6 +5,7 @@ Tareas pendientes:
 
 ##Cola de Prioridad
 
+En **negrilla** se marcaron las funciones mas primordiales
 - [ ] metodos para comparar por fecha y su hora que reciba de parametros, dos tareas
 
 Separacion de las funciones en la clase ColaPrioridad segun su uso
@@ -14,7 +15,7 @@ Separacion de las funciones en la clase ColaPrioridad segun su uso
 - [x] imprimirListaFechas()
 - [x] instertarFechaPrincipio(Calendar f)
 - [x] insertarFechaFinal(Calendar f)
-- [ ] *insertarFecha123(Calendar f)*
+- [ ] **insertarFecha123(Calendar f)**
 - [x] buscarNodoPrioridad(Calendar f)
 - [x] borrarNodoPrioridad(Calendar f)
 
@@ -24,17 +25,17 @@ Separacion de las funciones en la clase ColaPrioridad segun su uso
 
 > Tareas
 
-- [ ] *mostrarTarea(Tarea tarea)*
-- [ ] *leerTarea()*
-- [ ] *aplazarTarea(Calendar f)*
+- [ ] **mostrarTarea(Tarea tarea)**
+- [ ] **leerTarea()**
+- [ ] **aplazarTarea(Calendar f)**
 - [ ] imprimirListaTareas(Calendar f)
-- [ ] *insertarTarea(Calendar f, String tarea)*
+- [ ] **insertarTarea(Calendar f, String tarea)**
 - [ ] buscarTarea(Calendar f, String tarea)
 - [ ] borrarTarea(Calendar f, String tarea)
 
 > Front End
 
-- [ ] *agregarTarea()*
+- [ ] **agregarTarea()**
 - [ ] consultarPrimerDato()
 - [ ] actualizarPrimerDato()
 - [ ] extraerPrimerDato()
