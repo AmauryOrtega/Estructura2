@@ -48,6 +48,7 @@ public class Lista {
         return lista;
     }
 
+    //--------------Insertar------------------
     public void instertarFechaPrincipio(Calendar f) {
         if (isVacia()) {
             primero = new NodoPrioridad(f, new Cola(), null);
@@ -92,7 +93,7 @@ public class Lista {
         }
     }
 
-    public boolean borrarFecha(Calendar f) {
+    public boolean borrarPorFecha(Calendar f) {
         if (isVacia()) {
             return false;
         } else {
