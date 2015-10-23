@@ -10,22 +10,28 @@ public class Main {
         while (salir != true) {
             try {
                 int op = Integer.parseInt(JOptionPane.showInputDialog(null,
-                        "1.Insertar tarea\n"
-                        + "2.Buscar por fecha\n"
-                        + "3.Buscar por tarea\n"
-                        + "4.Imprimir fechas\n"
-                        + "5.Imprimir tareas de una fecha\n"
-                        + "6.Salir"
-                        , "Cola de prioridad v1.0", 3));
+                        "1.Agregar tarea\n"
+                        + "2.Consultar el primer dato\n"
+                        + "3.Extraer primer dato y aplazarlo antes de insertarlo\n"
+                        + "4.Guardar\n"
+                        + "5.Leer\n\n"
+                        + "6.Imprimir fechas\n"
+                        + "7.Imprimir Tareas de una fecha en especifico\n"
+                        + "\n"
+                        , "Cola de prioridad v1.1", 3));
                 switch (op) {
                     case 1:
-                        
+                        try{
+                            colaP.agregarTarea();
+                        }catch(Exception e){
+                            //Capturar la excepcion cuando la fecha y hora NO es posterior a la actual
+                        }
                         break;
                     case 2:
-                        
+                        colaP.consultarPrimerDato();
                         break;
                     case 3:
-                        
+                        colaP.actualizarPrimerDato();
                         break;
                     case 4:
                         
@@ -34,7 +40,10 @@ public class Main {
                         
                         break;
                     case 6:
-                        salir = true;
+                        colaP.imprimirListaFechas();
+                        break;
+                    case 7:
+                        colaP.imprimirListaTareas(null);
                         break;
                     default:
                         break;
