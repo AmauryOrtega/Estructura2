@@ -32,7 +32,7 @@ public class Main {
                         arbol.insertar(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el dato del nuevo nodo", "Insertar", 1)));
                         break;
                     case 2:
-                        System.out.println("buscarMan:"+arbol.buscarMan());
+                        System.out.println("buscarMan:"+arbol.buscarMax());
                         System.out.println("--");
                         System.out.println("buscarMin:"+arbol.buscarMin());
                         break;

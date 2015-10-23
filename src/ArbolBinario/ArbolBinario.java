@@ -39,7 +39,7 @@ public class ArbolBinario {
         }
     }
 
-    public nodoArbol raiz;
+    private nodoArbol raiz;
 
     public void abb() {
         nodoArbol raiz = new nodoArbol();
@@ -89,16 +89,16 @@ public class ArbolBinario {
     public void insertar(int a) {
         if (esVacio()) {
             nodoArbol nuevo = new nodoArbol();
-            nuevo.dato = a;
-            nuevo.hijoDerecho = new ArbolBinario();
-            nuevo.hijoIzquierdo = new ArbolBinario();
+            nuevo.setDato(a);
+            nuevo.setHijoDerecho(new ArbolBinario());
+            nuevo.setHijoIzquierdo(new ArbolBinario());
             raiz = nuevo;
         } else {
-            if (a > raiz.dato) {
-                (raiz.hijoDerecho).insertar(a);
+            if (a > raiz.getDato()) {
+                (raiz.getHijoDerecho()).insertar(a);
             }
-            if (a < raiz.dato) {
-                (raiz.hijoIzquierdo).insertar(a);
+            if (a < raiz.getDato()) {
+                (raiz.getHijoIzquierdo()).insertar(a);
             }
         }
     }
@@ -107,15 +107,15 @@ public class ArbolBinario {
         ArbolBinario paraEliminar = buscar(a);
         if (!paraEliminar.esVacio()) {
             if (paraEliminar.esHoja()) {
-                paraEliminar.raiz = null;
+                paraEliminar.setRaiz(null);
             } else {
-                if (!paraEliminar.raiz.hijoIzquierdo.esVacio() && !paraEliminar.raiz.hijoDerecho.esVacio()) {
-                    paraEliminar.raiz.dato = paraEliminar.raiz.hijoDerecho.buscarMin();
+                if (!paraEliminar.getRaiz().getHijoIzquierdo().esVacio() && !paraEliminar.getRaiz().getHijoDerecho().esVacio()) {
+                    paraEliminar.getRaiz().setDato(paraEliminar.getRaiz().getHijoDerecho().buscarMin());
                 } else {
-                    if (paraEliminar.raiz.hijoIzquierdo.esVacio()) {
-                        paraEliminar.raiz = paraEliminar.raiz.hijoDerecho.raiz;
+                    if (paraEliminar.getRaiz().getHijoIzquierdo().esVacio()) {
+                        paraEliminar.setRaiz(paraEliminar.getRaiz().getHijoDerecho().getRaiz());
                     } else {
-                        paraEliminar.raiz = paraEliminar.raiz.hijoIzquierdo.raiz;
+                        paraEliminar.setRaiz(paraEliminar.getRaiz().getHijoIzquierdo().getRaiz());
                     }
                 }
             }
@@ -123,39 +123,39 @@ public class ArbolBinario {
     }
 
     public ArbolBinario buscar(int a) {
-        ArbolBinario arbolito = null;
+        ArbolBinario arbolAux = null;
         if (!esVacio()) {
-            if (a == raiz.dato) {
+            if (a == raiz.getDato()) {
                 return this;
             } else {
-                if (a < raiz.dato) {
-                    arbolito = raiz.hijoIzquierdo.buscar(a);
+                if (a < raiz.getDato()) {
+                    arbolAux = raiz.getHijoIzquierdo().buscar(a);
                 } else {
-                    arbolito = raiz.hijoDerecho.buscar(a);
+                    arbolAux = raiz.getHijoDerecho().buscar(a);
                 }
             }
         }
-        return arbolito;
+        return arbolAux;
     }
 
     public int buscarMin() {
         ArbolBinario arbolActual = this;
-        while (!arbolActual.raiz.hijoIzquierdo.esVacio()) {
-            arbolActual = arbolActual.raiz.hijoIzquierdo;
+        while (!arbolActual.getRaiz().getHijoIzquierdo().esVacio()) {
+            arbolActual = arbolActual.getRaiz().getHijoIzquierdo();
         }
-        int devuelvo = arbolActual.raiz.dato;
-        //arbolActual.raiz=null;
-        return devuelvo;
+        int retorno =arbolActual.getRaiz().getDato();
+        arbolActual.setRaiz(null);
+        return retorno;
     }
 
-    public int buscarMan() {
+    public int buscarMax() {
         ArbolBinario arbolActual = this;
-        while (!arbolActual.raiz.hijoDerecho.esVacio()) {
-            arbolActual = arbolActual.raiz.hijoDerecho;
+        while (!arbolActual.getRaiz().getHijoDerecho().esVacio()) {
+            arbolActual = arbolActual.getRaiz().getHijoDerecho();
         }
-        int devuelvo = arbolActual.raiz.dato;
-        //arbolActual.raiz=null;
-        return devuelvo;
+        int retorno =arbolActual.getRaiz().getDato();
+        arbolActual.setRaiz(null);
+        return retorno;
     }
 
     //--------Impresion--------
@@ -183,4 +183,14 @@ public class ArbolBinario {
 
         }
     }
+
+    //--------Get/Set--------
+    public nodoArbol getRaiz() {
+        return raiz;
+    }
+
+    public void setRaiz(nodoArbol raiz) {
+        this.raiz = raiz;
+    }
+
 }
