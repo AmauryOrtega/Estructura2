@@ -41,8 +41,8 @@ public class ArbolBinario {
 
     private nodoArbol raiz;
 
-    public void abb() {
-        nodoArbol raiz = new nodoArbol();
+    public ArbolBinario() {
+        raiz = new nodoArbol();
     }
 
     //--------Extras--------

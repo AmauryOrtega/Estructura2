@@ -24,6 +24,8 @@ public class Main {
                         "1.Insertar dato\n"
                         + "2.Buscar dato\n"
                         + "3.Imprimir InOrden\n"
+                        + "3.Imprimir PostOrden\n"
+                        + "3.Imprimir InOrden\n"
                         + "4.Eliminar dato\n"
                         + "5.Salir"
                         , "Arbol Binario", 3));
