@@ -10,7 +10,7 @@ En **negrilla** se marcaron las funciones mas primordiales
 
 Separacion de las funciones en la clase ColaPrioridad segun su uso
 
-> Nodos de prioridad
+###Nodos de prioridad
 
 - [x] imprimirListaFechas()
 - [x] instertarFechaPrincipio(Calendar f)
@@ -19,11 +19,11 @@ Separacion de las funciones en la clase ColaPrioridad segun su uso
 - [x] buscarNodoPrioridad(Calendar f)
 - [x] borrarNodoPrioridad(Calendar f)
 
-> Cola
+###Cola
 
 - [ ] quitar() Deberia retornar una Tarea?
 
-> Tareas
+###Tareas
 
 - [ ] **mostrarTarea(Tarea tarea)**
 - [ ] **leerTarea()**
@@ -33,7 +33,7 @@ Separacion de las funciones en la clase ColaPrioridad segun su uso
 - [ ] buscarTarea(Calendar f, String tarea)
 - [ ] borrarTarea(Calendar f, String tarea)
 
-> Front End
+###Front End
 
 - [ ] **agregarTarea()**
 - [ ] consultarPrimerDato()
