@@ -14,10 +14,10 @@ public class Main {
                         + "2.Consultar el primer dato\n"
                         + "3.Extraer primer dato y aplazarlo antes de insertarlo\n"
                         + "4.Guardar\n"
-                        + "5.Leer\n\n"
+                        + "5.Leer\n------------------------------------"
                         + "6.Imprimir fechas\n"
                         + "7.Imprimir Tareas de una fecha en especifico\n"
-                        + "\n"
+                        + "8.Salir\n"
                         , "Cola de prioridad v1.1", 3));
                 switch (op) {
                     case 1:
@@ -44,6 +44,9 @@ public class Main {
                         break;
                     case 7:
                         colaP.imprimirListaTareas(null);
+                        break;
+                    case 8:
+                        salir=true;
                         break;
                     default:
                         break;
