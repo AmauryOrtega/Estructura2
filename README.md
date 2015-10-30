@@ -45,13 +45,13 @@ Tareas pendientes:
 - [ ] _ColaPrioridad_ boolean antesDe(Tarea uno, Tarea dos)
 - [ ] _ColaPrioridad_ boolean igual(Tarea uno, Tarea dos)
 
--se debe poder hacer comparaciones por fecha y hora de cada tarea (mayorque, menorque, igual)
-+se dispobe un metodo para leer la fecha y hora y el nombre de la tarea (dentro de agregarTarea)
--otro metodo para mostrar los datos de una tarea (imprimirTarea)
--otro metodo para aplazar una tarea (pendiente aplazar)
+- se debe poder hacer comparaciones por fecha y hora de cada tarea (mayorque, menorque, igual)
++ se dispobe un metodo para leer la fecha y hora y el nombre de la tarea (dentro de agregarTarea)
+- otro metodo para mostrar los datos de una tarea (imprimirTarea)
+- otro metodo para aplazar una tarea (pendiente aplazar)
 
--consultar primer dato (mas antiguo) orden de viejo a nuevo (0->inf) (consultarPrimerDato)
--extraer primer dato e insertar con fecha aumentada extraerPrimerDato
--extraer primer dato, no insertarlo, y mostrar su contenido junto a la fecha
+- consultar primer dato (mas antiguo) orden de viejo a nuevo (0->inf) (consultarPrimerDato)
+- extraer primer dato e insertar con fecha aumentada extraerPrimerDato
+- extraer primer dato, no insertarlo, y mostrar su contenido junto a la fecha
 
 arreglando impresion de todas las tareas
