@@ -3,39 +3,55 @@ Tareas pendientes:
 - Proyecto cola de priodidad
 - Hacer insertar arbol AVL
 
-##Cola de Prioridad
+###Impresiones
 
-En **negrilla** se marcaron las funciones mas primordiales
-- [ ] metodos para comparar por fecha y su hora que reciba de parametros, dos tareas
+- [x] _ColaPrioridad_ String imprimirListaTareas() **Menu**
+- [x] _ColaPrioridad_ String imprimirListaTareas(Date f)
+- [ ] _ColaPrioridad_ String imprimirTarea(Tarea tarea)
+	- [x] _ColaPrioridad_  Date buscarTarea(String tarea)
+		- [x] _Cola_ boolean buscarTarea(String tarea)
 
-Separacion de las funciones en la clase ColaPrioridad segun su uso
+###Insertar
 
-###Nodos de prioridad
+- [x] _ColaPrioridad_ void agregarTarea() throws Exception **Menu1**
+	- [ ] _ColaPrioridad_ insertarFecha123(Date f)
+		- [x] _Cola_ void insertarTarea(String d)
+- [x] _ColaPrioridad_ insertarFechaFinal(Date f)
+- [x] _ColaPrioridad_ insertarFechaPrincipio(Date f)
 
-- [x] imprimirListaFechas()
-- [x] instertarFechaPrincipio(Calendar f)
-- [x] insertarFechaFinal(Calendar f)
-- [ ] **insertarFecha123(Calendar f)**
-- [x] buscarNodoPrioridad(Calendar f)
-- [x] borrarNodoPrioridad(Calendar f)
+###Buscar
 
-###Cola
+- [x] _ColaPrioridad_  Date buscarTarea(String tarea)
+	- [x] _Cola_ boolean buscarTarea(String tarea)
+- [x] _ColaPrioridad_  NodoPrioridad buscarNodoPrioridad(Date f)
 
-- [ ] quitar() Deberia retornar una Tarea?
+###Borrar
 
-###Tareas
+- [x] _ColaPrioridad_ borrarNodoPrioridad(Date f)
+	- [x] _ColaPrioridad_  NodoPrioridad buscarNodoPrioridad(Date f)
+- [ ] _ColaPrioridad_ boolean borrarTarea(Date f, String tarea)
+	- [x] _ColaPrioridad_  NodoPrioridad buscarNodoPrioridad(Date f)
 
-- [ ] **mostrarTarea(Tarea tarea)**
-- [ ] **leerTarea()**
-- [ ] **aplazarTarea(Calendar f)**
-- [ ] imprimirListaTareas(Calendar f)
-- [ ] **insertarTarea(Calendar f, String tarea)**
-- [ ] buscarTarea(Calendar f, String tarea)
-- [ ] borrarTarea(Calendar f, String tarea)
+###Adicionales
 
-###Front End
+- [ ] _ColaPrioridad_ void consultarPrimerDato() **Menu2**
+	- [ ] _ColaPrioridad_ String imprimirTarea(Tarea tarea)
+- [ ] _ColaPrioridad_ void actualizarPrimerDato() **Menu3**
+	- [ ] _ColaPrioridad_ String imprimirTarea(Tarea tarea)
+- [ ] _ColaPrioridad_ void extraerPrimerDato() **Menu4**
+	- [ ] _ColaPrioridad_ String imprimirTarea(Tarea tarea)
 
-- [ ] **agregarTarea()**
-- [ ] consultarPrimerDato()
-- [ ] actualizarPrimerDato()
-- [ ] extraerPrimerDato()
+- [ ] _ColaPrioridad_ boolean despuesDe(Tarea uno, Tarea dos)
+- [ ] _ColaPrioridad_ boolean antesDe(Tarea uno, Tarea dos)
+- [ ] _ColaPrioridad_ boolean igual(Tarea uno, Tarea dos)
+
+-se debe poder hacer comparaciones por fecha y hora de cada tarea (mayorque, menorque, igual)
++se dispobe un metodo para leer la fecha y hora y el nombre de la tarea (dentro de agregarTarea)
+-otro metodo para mostrar los datos de una tarea (imprimirTarea)
+-otro metodo para aplazar una tarea (pendiente aplazar)
+
+-consultar primer dato (mas antiguo) orden de viejo a nuevo (0->inf) (consultarPrimerDato)
+-extraer primer dato e insertar con fecha aumentada extraerPrimerDato
+-extraer primer dato, no insertarlo, y mostrar su contenido junto a la fecha
+
+arreglando impresion de todas las tareas

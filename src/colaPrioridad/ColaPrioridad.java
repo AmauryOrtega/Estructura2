@@ -1,6 +1,7 @@
 package colaPrioridad;
 
 import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class ColaPrioridad {
@@ -27,25 +28,40 @@ public class ColaPrioridad {
         return this.primero == null;
     }
 
-    //--------------NODOS DE PRIORIDAD------------------
-    public String imprimirListaFechas() {
+    //--------IMPRESIONES------
+    public String imprimirListaTareas() {
         String lista = "";
-
         if (isVacia()) {
             lista += "Vacia";
         } else {
-            int i = 0;
             NodoPrioridad aux = this.primero;
+            lista="\n";
             while (aux != null) {
-                lista += "NodoPrioridad(" + i + ")" + " " + aux.getFecha() + "\n";
+                lista += "Lista de tareas de la fecha: " + aux.getFecha() + "\n" + imprimirListaTareas(aux.getFecha());
                 aux = aux.getSiguiente();
-                i++;
             }
         }
         return lista;
     }
 
-    public void instertarFechaPrincipio(Calendar f) {
+    public String imprimirListaTareas(Date f) {
+        NodoPrioridad aux = primero;
+        while (aux != null) {
+            if (aux.getFecha().compareTo(f) == 0) {
+                return aux.getCola().imprimir();
+            }
+            aux = aux.getSiguiente();
+        }
+        return null;
+    }
+
+    public String imprimirTarea(Tarea tarea) {
+        return "";
+    }
+
+    //--------INSERTAR--------
+    public void insertarFechaPrincipio(Date f) {
+        f.setSeconds(0);
         if (isVacia()) {
             primero = new NodoPrioridad(f, new Cola(), null);
         } else {
@@ -55,7 +71,8 @@ public class ColaPrioridad {
         }
     }
 
-    public void insertarFechaFinal(Calendar f) {
+    public void insertarFechaFinal(Date f) {
+        f.setSeconds(0);
         if (isVacia()) {
             primero = new NodoPrioridad(f, new Cola(), null);
         } else {
@@ -66,16 +83,99 @@ public class ColaPrioridad {
                 aux = aux.getSiguiente();
             }
             aux.setSiguiente(nuevo);
+        }
+    }
+
+    public NodoPrioridad insertarFecha123(Date f) {
+        //Debe hacerse debido a que esta es la mas usada en BACK END
+        if (isVacia()) {
+            primero = new NodoPrioridad(f, new Cola(), null);
+            System.out.println("INSERTAR123: Cola de prioridad vacia, agrego al inicio");
+        } else {
+            //Si ya existe esa fecha
+            NodoPrioridad aux = primero;
+            while (aux != null) {
+                if (aux.getFecha().compareTo(f) == 0) {
+                    return aux;
+                }
+                aux = aux.getSiguiente();
+            }
+            //Si no existe esa fecha
+            if (aux == null) {
+                NodoPrioridad derecha = primero;
+                while (derecha != null) {
+                    System.out.println("f.compareTo(derecha.getFecha)=" + f.compareTo(derecha.getFecha()));
+                    if (f.compareTo(derecha.getFecha()) > 0) {
+                        derecha = derecha.getSiguiente();
+                    } else {
+                        break;
+                    }
+                }
+                NodoPrioridad izquierda = primero;
+                while (izquierda != null) {
+                    if (izquierda.getSiguiente() == derecha) {
+                        break;
+                    }
+                    izquierda = izquierda.getSiguiente();
+                }
+                System.out.println("izq:" + izquierda.getFecha());
+                System.out.println("derecha:" + derecha.getFecha());
+                if (izquierda == null) {
+                    //Al inicio
+                    primero = new NodoPrioridad(f, new Cola(), primero);
+                } else {
+                    //Medio
+                    if (derecha != null) {
+                        izquierda.setSiguiente(new NodoPrioridad(f ,new Cola(), derecha));
+                    } else {
+                        //Final
+                        izquierda.setSiguiente(new NodoPrioridad(f, new Cola(), null));
+                    }
+                }
+
+            }
+        }
+        return null;
+    }
+
+    public void agregarTarea() throws Exception { //PEDIDO (1) - Lanzar la excepcion cuando la fecha y hora NO es posterior a la actual
+        String dato, fecha = "";
+        Calendar fecha2 = Calendar.getInstance();
+
+        dato = JOptionPane.showInputDialog(null, "Escriba la nueva tarea", "Agregar Tarea", 1);
+        fecha = JOptionPane.showInputDialog(null, "Escriba la fecha y hora de la nueva tarea\nEjemplo: 30/10/2015 15:30", "Agregar Tarea", 1);
+
+        int dia = Integer.parseInt(fecha.subSequence(0, 2).toString());
+        fecha = fecha.substring(3);
+
+        int mes = Integer.parseInt(fecha.subSequence(0, 2).toString());
+        fecha = fecha.substring(3);
+
+        int anio = Integer.parseInt(fecha.subSequence(0, 2).toString());
+        fecha = fecha.substring(5);
+
+        int hora = Integer.parseInt(fecha.subSequence(0, 2).toString());
+        fecha = fecha.substring(3);
+
+        int minuto = Integer.parseInt(fecha.subSequence(0, 2).toString());
+
+        fecha2.set(anio, mes, dia, hora, minuto, 0);
+
+        if (dato.equals("")) {
+            throw new Exception("La tarea no puede quedar vacia");
+        } else {
+            if (false) { //Si es del pasado
+                throw new Exception("La Fecha/Hora no es correcta");
+            } else {
+                this.insertarFecha123(fecha2.getTime()).getCola().insertarTarea(dato);
+                //this.insertarFecha123(fecha2.getTime()).getCola().insertarTarea(dato);
+            }
 
         }
     }
 
-    public NodoPrioridad insertarFecha123(Calendar f) {
-        //Debe hacerse debido a que esta es la mas usada en BACK END
-        return null;
-    }
-
-    public NodoPrioridad buscarNodoPrioridad(Calendar f) {
+    //--------BUSCAR--------    
+    public NodoPrioridad buscarNodoPrioridad(Date f) {
         if (isVacia()) {
             return null;
         } else {
@@ -94,7 +194,20 @@ public class ColaPrioridad {
         }
     }
 
-    public boolean borrarNodoPrioridad(Calendar f) {
+    public Date buscarTarea(String tarea) {
+        NodoPrioridad aux = primero;
+        while (aux != null) {
+            if (aux.getCola().buscarTarea(tarea)) {
+                return aux.getFecha();
+            }
+            aux = aux.getSiguiente();
+        }
+
+        return null;
+    }
+
+    //--------BORRAR-------- 
+    public boolean borrarNodoPrioridad(Date f) {
         if (isVacia()) {
             return false;
         } else {
@@ -131,83 +244,38 @@ public class ColaPrioridad {
             }
         }
     }
-    //--------------FIN/ NODOS DE PRIORIDAD---------------
 
-    //--------------TAREAS------------------    
-    public String imprimirListaTareas(Calendar f) {
-        String texto = "";
-        return texto;
-    }
-
-    public void insertarTarea(Calendar f, String tarea) {
-
-    }
-
-    public Calendar buscarTarea(String tarea) {
-
-        NodoPrioridad aux = primero;
-        while (aux != null) {
-            if (aux.getCola().buscarTarea(tarea)) {
-                return aux.getFecha();
-            }
-            aux = aux.getSiguiente();
-        }
-
-        return null;
-    }
-
-    public Tarea buscarTarea(Calendar f, String tarea) {
-
-        return new Tarea();
-    }
-
-    public boolean borrarTarea(Calendar f, String tarea) {
+    public boolean borrarTarea(Date f, String tarea) {
+        // usar NodoPrioridad buscarNodoPrioridad(Date f)
         return true;
     }
 
-    public void mostrarTarea(Tarea tarea) {
+    //--------------FUNCIONES ADICIONALES------------------    
+    public boolean despuesDe(Tarea uno, Tarea dos) {
+        Date fechaUno, fechaDos;
 
+        fechaUno = buscarTarea(uno.getDato());
+        fechaDos = buscarTarea(dos.getDato());
+
+        return fechaUno.after(fechaDos);//True fechaUno esta despues de fechaDos
     }
 
-    public Tarea leerTarea() {
-        return new Tarea();
+    public boolean antesDe(Tarea uno, Tarea dos) {
+        Date fechaUno, fechaDos;
+
+        fechaUno = buscarTarea(uno.getDato());
+        fechaDos = buscarTarea(dos.getDato());
+
+        return fechaUno.before(fechaDos);//True fechaUno esta antes de fechaDos
     }
-    //--------------FIN/ TAREAS------------------    
 
-    //--------------FUNCIONES FRONT END------------------    
-    public void agregarTarea() throws Exception { //PEDIDO (1) - Lanzar la excepcion cuando la fecha y hora NO es posterior a la actual
-        String dato, fecha = "";
-        Calendar fecha2 = Calendar.getInstance();
+    public boolean igual(Tarea uno, Tarea dos) {
+        Date fechaUno, fechaDos;
 
-        dato = JOptionPane.showInputDialog(null, "Escriba la nueva tarea", "Agregar Tarea", 1);
-        fecha = JOptionPane.showInputDialog(null, "Escriba la fecha y hora de la nueva tarea\nEjemplo: 30/10/2015 15:30", "Agregar Tarea", 1);
+        fechaUno = buscarTarea(uno.getDato());
+        fechaDos = buscarTarea(dos.getDato());
 
-        int dia = Integer.parseInt(fecha.subSequence(0, 2).toString());
-        fecha = fecha.substring(3);
-
-        int mes = Integer.parseInt(fecha.subSequence(0, 2).toString());
-        fecha = fecha.substring(3);
-
-        int anio = Integer.parseInt(fecha.subSequence(0, 2).toString());
-        fecha = fecha.substring(5);
-
-        int hora = Integer.parseInt(fecha.subSequence(0, 2).toString());
-        fecha = fecha.substring(3);
-
-        int minuto = Integer.parseInt(fecha.subSequence(0, 2).toString());
-
-        fecha2.set(anio, mes, dia, hora, minuto, 0);
-
-        if (dato.equals("")) {
-            throw new Exception("La tarea no puede quedar vacia");
-        } else {
-            if (true) { //Si es del pasado
-                throw new Exception("La Fecha/Hora no es correcta");
-            } else {
-                this.insertarFecha123(fecha2).getCola().insertarTarea(dato);
-            }
-
-        }
+        return fechaUno.equals(fechaDos);//True fechaUnoes igual a fechaDos
     }
 
     public void consultarPrimerDato() {  //PEDIDO (2) - RETORNAR TAREA CON FECHA Y HORA MAS ANTIGUA
@@ -221,34 +289,4 @@ public class ColaPrioridad {
     public void extraerPrimerDato() {    //PEDIDO (4) - EXTRAER PRIMER DATO Y MOSTRAR SU INFO (NO VOLVER A METER EL DATO)
         //Hacer uso de la funcion leerTarea y buscarNodoPrioridad(Usando la fecha actual)
     }
-    //--------------FIN/ FRONT END------------------        
-
-    //--------------FUNCIONES ADICIONALES------------------    
-    public boolean despuesDe(Tarea uno, Tarea dos) {
-        Calendar fechaUno, fechaDos;
-
-        fechaUno = buscarTarea(uno.getDato());
-        fechaDos = buscarTarea(dos.getDato());
-
-        return fechaUno.after(fechaDos);//True fechaUno esta despues de fechaDos
-    }
-
-    public boolean antesDe(Tarea uno, Tarea dos) {
-        Calendar fechaUno, fechaDos;
-
-        fechaUno = buscarTarea(uno.getDato());
-        fechaDos = buscarTarea(dos.getDato());
-
-        return fechaUno.before(fechaDos);//True fechaUno esta antes de fechaDos
-    }
-
-    public boolean igual(Tarea uno, Tarea dos) {
-        Calendar fechaUno, fechaDos;
-
-        fechaUno = buscarTarea(uno.getDato());
-        fechaDos = buscarTarea(dos.getDato());
-
-        return fechaUno.equals(fechaDos);//True fechaUnoes igual a fechaDos
-    }
-
 }

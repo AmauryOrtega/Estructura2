@@ -1,5 +1,8 @@
 package colaPrioridad;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class Main {
@@ -13,8 +16,8 @@ public class Main {
                         + "2.Consultar el primer dato\n"
                         + "3.Extraer primer dato y aplazarlo antes de insertarlo\n"
                         + "4.Guardar\n"
-                        + "5.Leer\n------------------------------------"
-                        + "6.Imprimir fechas\n"
+                        + "5.Leer\n------------------------------------\n"
+                        + "6.Imprimir Tareas de todas las fechas\n"
                         + "7.Imprimir Tareas de una fecha en especifico\n"
                         + "8.Salir\n"
                         , "Cola de prioridad v1.1", 3));
@@ -39,10 +42,13 @@ public class Main {
                         
                         break;
                     case 6:
-                        colaP.imprimirListaFechas();
+                        JOptionPane.showMessageDialog(null, colaP.imprimirListaTareas(), "Lista de todas las tareas", 1);
                         break;
                     case 7:
-                        colaP.imprimirListaTareas(null);
+                        Date fechaAux = new Date();
+                        //ParseException ex
+                        DateFormat.getInstance().parse(JOptionPane.showInputDialog(null, "Ingrese la fecha", "Imprimir Lista de tareas de una fecha", 3));
+                        JOptionPane.showMessageDialog(null, colaP.imprimirListaTareas(), "Lista de todas las tareas", 1);
                         break;
                     case 8:
                         salir=true;
@@ -52,6 +58,8 @@ public class Main {
                 }
             } catch (java.lang.NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Solo numeros enteros", "Error", 0);
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null, ex, "Error", 0);
             }
         }
     }

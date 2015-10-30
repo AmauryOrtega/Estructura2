@@ -49,11 +49,10 @@ public class Cola {
             texto = "Vacio";
         } else {
             Tarea aux = primero;
-            texto += "Cola\n";
             while (aux != null) {
                 texto += aux.toString() + "\n";
                 aux = aux.getSiguiente();
-            };
+            }
         }
 
         return texto;

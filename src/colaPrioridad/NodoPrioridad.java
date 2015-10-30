@@ -1,9 +1,9 @@
 package colaPrioridad;
 
-import java.util.Calendar;
+import java.util.Date;
 
 public class NodoPrioridad {
-    protected Calendar fecha;
+    protected Date fecha;
     protected Cola cola;
     protected NodoPrioridad siguiente;
 
@@ -13,17 +13,17 @@ public class NodoPrioridad {
         siguiente=null;
     }
 
-    public NodoPrioridad(Calendar fecha, Cola cola, NodoPrioridad siguiente) {
+    public NodoPrioridad(Date fecha, Cola cola, NodoPrioridad siguiente) {
         this.fecha = fecha;
         this.cola = cola;
         this.siguiente = siguiente;
     }
 
-    public Calendar getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(Calendar fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
