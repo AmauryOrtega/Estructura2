@@ -28,7 +28,7 @@ public class Cola {
             nitem++;
         } else {
             ultimo.setSiguiente(new Tarea(d, null));
-            ultimo=ultimo.getSiguiente();
+            ultimo = ultimo.getSiguiente();
             nitem++;
         }
     }
@@ -44,19 +44,30 @@ public class Cola {
     }
 
     public String imprimir() {
-        String texto="";
-        if(isVacia()){
-            texto="Vacio";
-        }else{
+        String texto = "";
+        if (isVacia()) {
+            texto = "Vacio";
+        } else {
             Tarea aux = primero;
-            texto+="Cola\n";
-            while(aux!=null){
-                texto+=aux.toString()+"\n";
-                aux=aux.getSiguiente();
+            texto += "Cola\n";
+            while (aux != null) {
+                texto += aux.toString() + "\n";
+                aux = aux.getSiguiente();
             };
         }
-        
+
         return texto;
+    }
+
+    public boolean buscarTarea(String tarea) {
+        Tarea aux = primero;
+        while (aux != null) {
+            if (aux.getDato().equals(tarea)) {
+                return true;
+            }
+            aux = aux.getSiguiente();
+        }
+        return false;
     }
 
 }

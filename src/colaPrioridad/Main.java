@@ -1,6 +1,5 @@
 package colaPrioridad;
 
-import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 public class Main {
@@ -14,7 +13,7 @@ public class Main {
                         + "2.Consultar el primer dato\n"
                         + "3.Extraer primer dato y aplazarlo antes de insertarlo\n"
                         + "4.Guardar\n"
-                        + "5.Leer\n------------------------------------\n"
+                        + "5.Leer\n------------------------------------"
                         + "6.Imprimir fechas\n"
                         + "7.Imprimir Tareas de una fecha en especifico\n"
                         + "8.Salir\n"
@@ -25,7 +24,6 @@ public class Main {
                             colaP.agregarTarea();
                         }catch(Exception e){
                             //Capturar la excepcion cuando la fecha y hora NO es posterior a la actual
-                            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 0);
                         }
                         break;
                     case 2:

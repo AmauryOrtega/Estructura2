@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package colaPrioridad.Persistencia;
 
 import java.io.FileInputStream;
@@ -13,6 +9,10 @@ import java.io.ObjectOutputStream;
 import javax.swing.JOptionPane;
 import colaPrioridad.ColaPrioridad;
 
+/**
+ *
+ * @author RamiroVerbel & AmauryOrtega
+ */
 public class ArchivoBinario {
 
     private static final String ruta_archivo = "src\\colaPrioridad.Persistencia\\datosApp.dat";
@@ -31,7 +31,7 @@ public class ArchivoBinario {
         } catch (IOException e) {
             System.out.println(e);
         } catch (Exception e) {
-
+            System.out.println(e);
         }
     }
 
@@ -48,6 +48,7 @@ public class ArchivoBinario {
         } catch (ClassNotFoundException | IOException ex) {
             System.out.println(ex);
         } catch (Exception e) {
+            System.out.println(e);
         }
         return aux;
     }
