@@ -1,6 +1,7 @@
 package colaPrioridad;
 
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 public class ColaPrioridad {
 
@@ -159,8 +160,21 @@ public class ColaPrioridad {
     //--------------FIN/ TAREAS------------------    
 
     //--------------FUNCIONES FRONT END------------------    
-    public void agregarTarea() { //PEDIDO (1) - Lanzar la excepcion cuando la fecha y hora NO es posterior a la actual
-
+    public void agregarTarea() throws Exception{ //PEDIDO (1) - Lanzar la excepcion cuando la fecha y hora NO es posterior a la actual
+        String dato="";
+        dato=JOptionPane.showInputDialog(null, "Escriba la nueva tarea", "Agregar Tarea", 1);
+        if(dato.equals("")/* || tarea del pasado */){
+            throw new Exception("La tarea no puede quedar vacia");
+        }else{
+            /*
+            if(tarea es del pasado){
+                throw new Exception("La Fecha/Hora no es correcta");
+            }else{
+                Tarea nuevaTarea = new Tarea(dato, null);
+            }
+            */
+            Tarea nuevaTarea = new Tarea(dato, null);
+        }
     }
 
     public void consultarPrimerDato() {  //PEDIDO (2) - RETORNAR TAREA CON FECHA Y HORA MAS ANTIGUA

@@ -10,14 +10,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import colaPrioridad.ColaPrioridad;
 
-/**
- *
- * @author crisap94
- */
 public class ArchivoBinario {
 
     private static final String ruta_archivo = "src\\colaPrioridad.Persistencia\\datosApp.dat";
