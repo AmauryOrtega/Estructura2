@@ -1,31 +1,26 @@
 package colaPrioridad;
 
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        Date f1 = new Date(30, 10, 2015, 15, 30, 00);
-        Date f2 = new Date(31, 10, 2015, 15, 30, 00);
-        Date f3 = new Date(29, 10, 2015, 15, 30, 00);
-
-        System.out.println("f1 c f2: " + f1.compareTo(f2));
-        System.out.println("f1 c f3: " + f1.compareTo(f3));
-        System.out.println("f1 c f1: " + f1.compareTo(f1));
+        ColaPrioridad colaP = new ColaPrioridad();
         
         DateFormat formato = new SimpleDateFormat("dd/MM/yyy HH:mm");
         try {
             colaP.insertarFechaPrincipio((Date) formato.parse("30/10/2015 15:30"));
             colaP.insertarFechaFinal((Date) formato.parse("31/10/2015 15:30"));
-            colaP.insertarFechaFinal((Date) formato.parse("01/11/2015 15:30"));
+            colaP.insertarFechaFinal((Date) formato.parse("02/11/2015 15:30"));
         } catch (ParseException ex) {
             System.out.println("ex:" + ex);
         }
-
-
-        ColaPrioridad colaP = new ColaPrioridad();
+        
         boolean salir = false;
         while (salir != true) {
             try {
@@ -43,7 +38,7 @@ public class Main {
                         try {
                             colaP.agregarTarea();
                         } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, e.getMessage());
+                            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 0);
                         }
                         break;
                     case 2:

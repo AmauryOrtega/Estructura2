@@ -70,7 +70,7 @@ public class Cola {
     public String imprimir() {
         String texto = "";
         if (isVacia()) {
-            texto = "Vacio";
+            texto = "Vacio\n";
         } else {
             Tarea aux = primero;
             while (aux != null) {

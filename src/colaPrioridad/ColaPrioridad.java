@@ -1,5 +1,7 @@
 package colaPrioridad;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -109,7 +111,6 @@ public class ColaPrioridad {
             if (aux == null) {
                 NodoPrioridad derecha = primero;
                 while (derecha != null) {
-                    System.out.println("f.compareTo(derecha.getFecha)=" + f.compareTo(derecha.getFecha()));
                     if (f.compareTo(derecha.getFecha()) > 0) {
                         derecha = derecha.getSiguiente();
                     } else {
@@ -123,18 +124,28 @@ public class ColaPrioridad {
                     }
                     izquierda = izquierda.getSiguiente();
                 }
-                System.out.println("izq:" + izquierda.getFecha());
-                System.out.println("derecha:" + derecha.getFecha());
+                try {
+                    System.out.println("izq:" + izquierda.getFecha());
+                    System.out.println("derecha:" + derecha.getFecha());
+                } catch (Exception e) {
+                    //Solo se captura para que no de error al ver la fecha de los nodoPrioridad izqueirda y derecha
+                }
                 if (izquierda == null) {
                     //Al inicio
                     primero = new NodoPrioridad(f, new Cola(), primero);
+                    System.out.println("INSERTAR123: Cola de prioridad no vacia, agrego al inicio");
+                    return primero;
                 } else {
                     //Medio
                     if (derecha != null) {
                         izquierda.setSiguiente(new NodoPrioridad(f, new Cola(), derecha));
+                        System.out.println("INSERTAR123: Cola de prioridad no vacia, agrego entre " + izquierda.getFecha() + " y " + derecha.getFecha());
+                        return izquierda.getSiguiente();
                     } else {
                         //Final
                         izquierda.setSiguiente(new NodoPrioridad(f, new Cola(), null));
+                        System.out.println("INSERTAR123: Cola de prioridad no vacia, agrego al final");
+                        return izquierda.getSiguiente();
                     }
                 }
 
@@ -144,36 +155,25 @@ public class ColaPrioridad {
     }
 
     public void agregarTarea() throws Exception { //PEDIDO (1) - Lanzar la excepcion cuando la fecha y hora NO es posterior a la actual
-        String dato, fecha = "";
-        Calendar fecha2 = Calendar.getInstance();
-
+        String dato;
         dato = JOptionPane.showInputDialog(null, "Escriba la nueva tarea", "Agregar Tarea", 1);
-        fecha = JOptionPane.showInputDialog(null, "Escriba la fecha y hora de la nueva tarea\nEjemplo: 30/10/2015 15:30", "Agregar Tarea", 1);
 
-        int dia = Integer.parseInt(fecha.subSequence(0, 2).toString());
-        fecha = fecha.substring(3);
+        DateFormat formato = new SimpleDateFormat("dd/MM/yyy HH:mm");
+        Date fecha = new Date();
 
-        int mes = Integer.parseInt(fecha.subSequence(0, 2).toString());
-        fecha = fecha.substring(3);
-
-        int anio = Integer.parseInt(fecha.subSequence(0, 2).toString());
-        fecha = fecha.substring(5);
-
-        int hora = Integer.parseInt(fecha.subSequence(0, 2).toString());
-        fecha = fecha.substring(3);
-
-        int minuto = Integer.parseInt(fecha.subSequence(0, 2).toString());
-
-        fecha2.set(anio, mes, dia, hora, minuto, 0);
+        try {
+            fecha = (Date) formato.parse(JOptionPane.showInputDialog(null, "Escriba la fecha y hora de la nueva tarea\nEjemplo: 30/10/2015 15:30", "Agregar Tarea", 1));
+        } catch (Exception e) {
+            throw new Exception("Porfavor use el formato dado dd/MM/yyy HH:mm\nEjemplo: 30/10/2015 15:30");
+        }
 
         if (dato.equals("")) {
             throw new Exception("La tarea no puede quedar vacia");
         } else {
-            if (false) { //Si es del pasado
-                throw new Exception("La Fecha/Hora no es correcta");
+            if (fecha.compareTo(Calendar.getInstance().getTime()) < 0) { //Si es del pasado
+                throw new Exception("La Fecha/Hora no es correcta debido a que es anterior a la fecha actual");
             } else {
-                this.insertarFecha123(fecha2.getTime()).getCola().insertarTarea(dato);
-                //this.insertarFecha123(fecha2.getTime()).getCola().insertarTarea(dato);
+                this.insertarFecha123(fecha).getCola().insertarTarea(dato);
             }
 
         }
@@ -207,7 +207,6 @@ public class ColaPrioridad {
             }
             aux = aux.getSiguiente();
         }
-
         return null;
     }
 
@@ -249,6 +248,10 @@ public class ColaPrioridad {
             }
         }
     }
+    
+    public void atender(){
+        
+    }
 
     //--------------FUNCIONES ADICIONALES------------------    
     public boolean despuesDe(Tarea uno, Tarea dos) {
@@ -278,6 +281,7 @@ public class ColaPrioridad {
         return fechaUno.equals(fechaDos);//True fechaUnoes igual a fechaDos
     }
 
+    
     public void consultarPrimerDato() {  //PEDIDO (2) - RETORNAR TAREA CON FECHA Y HORA MAS ANTIGUA
         JOptionPane.showMessageDialog(null, imprimirTarea(this.getPrimero().getCola().getPrimero().getDato()), "Primera Tarea", 1);
     }

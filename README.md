@@ -7,14 +7,14 @@ Tareas pendientes:
 
 - [x] _ColaPrioridad_ String imprimirListaTareas() **Menu**
 - [x] _ColaPrioridad_ String imprimirListaTareas(Date f)
-- [ ] _ColaPrioridad_ String imprimirTarea(Tarea tarea)
+- [x] _ColaPrioridad_ String imprimirTarea(String tarea)
 	- [x] _ColaPrioridad_  Date buscarTarea(String tarea)
 		- [x] _Cola_ boolean buscarTarea(String tarea)
 
 ###Insertar
 
 - [x] _ColaPrioridad_ void agregarTarea() throws Exception **Menu1**
-	- [ ] _ColaPrioridad_ insertarFecha123(Date f)
+	- [x] _ColaPrioridad_ insertarFecha123(Date f)
 		- [x] _Cola_ void insertarTarea(String d)
 - [x] _ColaPrioridad_ insertarFechaFinal(Date f)
 - [x] _ColaPrioridad_ insertarFechaPrincipio(Date f)
@@ -29,21 +29,20 @@ Tareas pendientes:
 
 - [x] _ColaPrioridad_ borrarNodoPrioridad(Date f)
 	- [x] _ColaPrioridad_  NodoPrioridad buscarNodoPrioridad(Date f)
-- [ ] _ColaPrioridad_ boolean borrarTarea(Date f, String tarea)
-	- [x] _ColaPrioridad_  NodoPrioridad buscarNodoPrioridad(Date f)
+- [ ] _ColaPrioridad_ void atender()
 
 ###Adicionales
 
-- [ ] _ColaPrioridad_ void consultarPrimerDato() **Menu2**
-	- [ ] _ColaPrioridad_ String imprimirTarea(Tarea tarea)
+- [ ] **ERROR** _ColaPrioridad_ void consultarPrimerDato() **Menu2**
+	- [x] _ColaPrioridad_ String imprimirTarea(Tarea tarea)
 - [ ] _ColaPrioridad_ void actualizarPrimerDato() **Menu3**
 	- [ ] _ColaPrioridad_ String imprimirTarea(Tarea tarea)
 - [ ] _ColaPrioridad_ void extraerPrimerDato() **Menu4**
 	- [ ] _ColaPrioridad_ String imprimirTarea(Tarea tarea)
 
-- [ ] _ColaPrioridad_ boolean despuesDe(Tarea uno, Tarea dos)
-- [ ] _ColaPrioridad_ boolean antesDe(Tarea uno, Tarea dos)
-- [ ] _ColaPrioridad_ boolean igual(Tarea uno, Tarea dos)
+- [x] _ColaPrioridad_ boolean despuesDe(Tarea uno, Tarea dos)
+- [x] _ColaPrioridad_ boolean antesDe(Tarea uno, Tarea dos)
+- [x] _ColaPrioridad_ boolean igual(Tarea uno, Tarea dos)
 
 - se debe poder hacer comparaciones por fecha y hora de cada tarea (mayorque, menorque, igual)
 + se dispobe un metodo para leer la fecha y hora y el nombre de la tarea (dentro de agregarTarea)
