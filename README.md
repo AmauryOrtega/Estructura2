@@ -33,7 +33,7 @@ Tareas pendientes:
 
 ###Adicionales
 
-- [ ] **ERROR** _ColaPrioridad_ void consultarPrimerDato() **Menu2**
+- [x] _ColaPrioridad_ void consultarPrimerDato() **Menu2**
 	- [x] _ColaPrioridad_ String imprimirTarea(Tarea tarea)
 - [ ] _ColaPrioridad_ void actualizarPrimerDato() **Menu3**
 	- [ ] _ColaPrioridad_ String imprimirTarea(Tarea tarea)

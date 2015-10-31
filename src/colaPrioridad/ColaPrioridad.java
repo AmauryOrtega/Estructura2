@@ -98,6 +98,7 @@ public class ColaPrioridad {
         if (isVacia()) {
             primero = new NodoPrioridad(f, new Cola(), null);
             System.out.println("INSERTAR123: Cola de prioridad vacia, agrego al inicio");
+            return primero;
         } else {
             //Si ya existe esa fecha
             NodoPrioridad aux = primero;
