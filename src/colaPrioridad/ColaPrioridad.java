@@ -251,7 +251,11 @@ public class ColaPrioridad {
     }
     
     public void atender(){
-        
+        if(!isVacia()){
+            if(!this.primero.getCola().quitar()){
+                this.borrarNodoPrioridad(this.primero.getFecha());
+            }
+        }
     }
 
     //--------------FUNCIONES ADICIONALES------------------    

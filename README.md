@@ -29,7 +29,8 @@ Tareas pendientes:
 
 - [x] _ColaPrioridad_ borrarNodoPrioridad(Date f)
 	- [x] _ColaPrioridad_  NodoPrioridad buscarNodoPrioridad(Date f)
-- [ ] _ColaPrioridad_ void atender()
+- [x] _ColaPrioridad_ void atender()
+	- [x] _Cola_ boolean quitar()
 
 ###Adicionales
 
@@ -52,5 +53,3 @@ Tareas pendientes:
 - consultar primer dato (mas antiguo) orden de viejo a nuevo (0->inf) (consultarPrimerDato)
 - extraer primer dato e insertar con fecha aumentada extraerPrimerDato
 - extraer primer dato, no insertarlo, y mostrar su contenido junto a la fecha
-
-arreglando impresion de todas las tareas
