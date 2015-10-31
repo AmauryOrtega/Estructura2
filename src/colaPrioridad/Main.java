@@ -11,8 +11,9 @@ public class Main {
 
     public static void main(String[] args) {
         ColaPrioridad colaP = new ColaPrioridad();
-        
+        /*
         DateFormat formato = new SimpleDateFormat("dd/MM/yyy HH:mm");
+        
         try {
             colaP.insertarFechaPrincipio((Date) formato.parse("30/10/2015 15:30"));
             colaP.insertarFechaFinal((Date) formato.parse("31/10/2015 15:30"));
@@ -20,7 +21,7 @@ public class Main {
         } catch (ParseException ex) {
             System.out.println("ex:" + ex);
         }
-        
+        */
         boolean salir = false;
         while (salir != true) {
             try {
