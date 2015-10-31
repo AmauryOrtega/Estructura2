@@ -63,7 +63,7 @@ public class ColaPrioridad {
             return "Fecha: " + fechaTarea.toLocaleString() + ", Tarea: " + tarea;
         }
     }
-    
+
     //--------INSERTAR--------
     public void insertarFechaPrincipio(Date f) {
         f.setSeconds(0);
@@ -279,7 +279,7 @@ public class ColaPrioridad {
     }
 
     public void consultarPrimerDato() {  //PEDIDO (2) - RETORNAR TAREA CON FECHA Y HORA MAS ANTIGUA
-        //Hacer uso de la funcion leerTarea y buscarNodoPrioridad(Usando la fecha actual)
+        JOptionPane.showMessageDialog(null, imprimirTarea(this.getPrimero().getCola().getPrimero().getDato()), "Primera Tarea", 1);
     }
 
     public void actualizarPrimerDato() { //PEDIDO (3) - EXTRAER PRIMER DATO Y VOLVERLO A PONER CON FECHA EXTENDIDA
