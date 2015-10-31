@@ -250,11 +250,6 @@ public class ColaPrioridad {
         }
     }
 
-    public boolean borrarTarea(Date f, String tarea) {
-        // usar NodoPrioridad buscarNodoPrioridad(Date f)
-        return true;
-    }
-
     //--------------FUNCIONES ADICIONALES------------------    
     public boolean despuesDe(Tarea uno, Tarea dos) {
         Date fechaUno, fechaDos;
