@@ -17,6 +17,30 @@ public class Cola {
         nitem = 1;
     }
 
+    public Tarea getPrimero() {
+        return primero;
+    }
+
+    public void setPrimero(Tarea primero) {
+        this.primero = primero;
+    }
+
+    public Tarea getUltimo() {
+        return ultimo;
+    }
+
+    public void setUltimo(Tarea ultimo) {
+        this.ultimo = ultimo;
+    }
+
+    public int getNitem() {
+        return nitem;
+    }
+
+    public void setNitem(int nitem) {
+        this.nitem = nitem;
+    }
+    
     public boolean isVacia() {
         return nitem == 0;
     }
