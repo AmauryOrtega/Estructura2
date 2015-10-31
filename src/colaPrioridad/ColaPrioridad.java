@@ -35,9 +35,9 @@ public class ColaPrioridad {
             lista += "Vacia";
         } else {
             NodoPrioridad aux = this.primero;
-            lista="\n";
+            lista = "\n";
             while (aux != null) {
-                lista += "Lista de tareas de la fecha: " + aux.getFecha() + "\n" + imprimirListaTareas(aux.getFecha());
+                lista += "Lista de tareas de la fecha: " + aux.getFecha().toLocaleString() + "\n" + imprimirListaTareas(aux.getFecha());
                 aux = aux.getSiguiente();
             }
         }
@@ -55,10 +55,15 @@ public class ColaPrioridad {
         return null;
     }
 
-    public String imprimirTarea(Tarea tarea) {
-        return "";
+    public String imprimirTarea(String tarea) {
+        Date fechaTarea = buscarTarea(tarea);
+        if (fechaTarea == null) {
+            return "No se encontro la tarea";
+        } else {
+            return "Fecha: " + fechaTarea.toLocaleString() + ", Tarea: " + tarea;
+        }
     }
-
+    
     //--------INSERTAR--------
     public void insertarFechaPrincipio(Date f) {
         f.setSeconds(0);
@@ -126,7 +131,7 @@ public class ColaPrioridad {
                 } else {
                     //Medio
                     if (derecha != null) {
-                        izquierda.setSiguiente(new NodoPrioridad(f ,new Cola(), derecha));
+                        izquierda.setSiguiente(new NodoPrioridad(f, new Cola(), derecha));
                     } else {
                         //Final
                         izquierda.setSiguiente(new NodoPrioridad(f, new Cola(), null));
