@@ -1,8 +1,9 @@
 package colaPrioridad;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class NodoPrioridad {
+public class NodoPrioridad implements Serializable{
     protected Date fecha;
     protected Cola cola;
     protected NodoPrioridad siguiente;
