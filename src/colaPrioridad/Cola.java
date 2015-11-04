@@ -80,7 +80,6 @@ public class Cola implements Serializable{
                 aux = aux.getSiguiente();
             }
         }
-
         return texto;
     }
 
@@ -94,5 +93,4 @@ public class Cola implements Serializable{
         }
         return false;
     }
-
 }

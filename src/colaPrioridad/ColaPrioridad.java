@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-public class ColaPrioridad implements Serializable{
+public class ColaPrioridad implements Serializable {
 
     private NodoPrioridad primero;
 
@@ -150,7 +150,6 @@ public class ColaPrioridad implements Serializable{
                         return izquierda.getSiguiente();
                     }
                 }
-
             }
         }
         return null;
@@ -301,6 +300,7 @@ public class ColaPrioridad implements Serializable{
 
     public void actualizarPrimerDato() { //PEDIDO (3) - EXTRAER PRIMER DATO Y VOLVERLO A PONER CON FECHA EXTENDIDA
         boolean salir = false;
+        this.consultarPrimerDato();//Mostrar la tarea a modificar
         Calendar fechaCalendar = Calendar.getInstance();
         fechaCalendar.setTime(this.getPrimero().fecha);
         int cantidad, op = 0;
