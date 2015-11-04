@@ -1,4 +1,3 @@
-
 package colaPrioridad.Persistencia;
 
 import java.io.FileInputStream;
@@ -15,7 +14,7 @@ import colaPrioridad.ColaPrioridad;
  */
 public class ArchivoBinario {
 
-    private static final String ruta_archivo = "src\\colaPrioridad.Persistencia\\datosApp.dat";
+    private static final String ruta_archivo = "src/colaPrioridad/Persistencia/datosApp.dat";
     //private static final String ruta_archivo = "datosAppFuera.dat";
 
     public static void escribir(ColaPrioridad app) {
@@ -26,7 +25,7 @@ public class ArchivoBinario {
                 file.close();
 
                 //System.out.println("Guardado exitoso");
-                JOptionPane.showMessageDialog(null, "Guardado exitoso", "Exito", 0);
+                JOptionPane.showMessageDialog(null, "Guardado exitoso", "Exito", 1);
             }
         } catch (IOException e) {
             System.out.println(e);
@@ -42,8 +41,8 @@ public class ArchivoBinario {
 
                 aux = (ColaPrioridad) file.readObject();
                 file.close();
-                System.out.println("Lectura exitosa");
-
+                //System.out.println("Lectura exitosa");
+                JOptionPane.showMessageDialog(null, "Lectura exitosa", "Exito", 1);
             }
         } catch (ClassNotFoundException | IOException ex) {
             System.out.println(ex);

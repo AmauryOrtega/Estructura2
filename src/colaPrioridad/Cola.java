@@ -1,6 +1,8 @@
 package colaPrioridad;
 
-public class Cola {
+import java.io.Serializable;
+
+public class Cola implements Serializable{
 
     private Tarea primero;
     private Tarea ultimo;
