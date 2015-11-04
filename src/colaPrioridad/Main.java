@@ -53,7 +53,11 @@ public class Main {
                         colaP.extraerPrimerDato();
                         break;
                     case 5:
-                        colaP.atender();
+                        if (colaP.atender()) {
+                            JOptionPane.showMessageDialog(null, "Se atendio correctamente", "Atender primera Tarea", 1);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La cola esta vacia", "Atender primera Tarea", 1);
+                        }
                         break;
                     case 6:
                         JOptionPane.showMessageDialog(null, colaP.imprimirListaTareas(), "Lista de todas las tareas", 1);
@@ -72,10 +76,10 @@ public class Main {
                         ArchivoBinario.escribir(colaP);
                         break;
                     case 9:
-                        colaP=ArchivoBinario.leer();
+                        colaP = ArchivoBinario.leer();
                         break;
                     case 10:
-                        salir=true;
+                        salir = true;
                         break;
                     default:
                         break;

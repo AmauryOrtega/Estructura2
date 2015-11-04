@@ -54,7 +54,7 @@ public class ColaPrioridad {
             }
             aux = aux.getSiguiente();
         }
-        return null;
+        return "vacia";
     }
 
     public String imprimirTarea(String tarea) {
@@ -249,12 +249,16 @@ public class ColaPrioridad {
             }
         }
     }
-    
-    public void atender(){
-        if(!isVacia()){
-            if(!this.primero.getCola().quitar()){
+
+    public boolean atender() {
+        if (isVacia()) {
+            return false;
+        } else {
+            this.primero.getCola().quitar();
+            if (this.primero.getCola().getNitem() == 0) {
                 this.borrarNodoPrioridad(this.primero.getFecha());
             }
+            return true;
         }
     }
 
@@ -286,16 +290,68 @@ public class ColaPrioridad {
         return fechaUno.equals(fechaDos);//True fechaUnoes igual a fechaDos
     }
 
-    
     public void consultarPrimerDato() {  //PEDIDO (2) - RETORNAR TAREA CON FECHA Y HORA MAS ANTIGUA
-        JOptionPane.showMessageDialog(null, imprimirTarea(this.getPrimero().getCola().getPrimero().getDato()), "Primera Tarea", 1);
+        if (isVacia()) {
+            JOptionPane.showMessageDialog(null, "La cola esta vacia", "Primera Tarea", 1);
+        } else {
+            JOptionPane.showMessageDialog(null, imprimirTarea(this.getPrimero().getCola().getPrimero().getDato()), "Primera Tarea", 1);
+        }
     }
 
     public void actualizarPrimerDato() { //PEDIDO (3) - EXTRAER PRIMER DATO Y VOLVERLO A PONER CON FECHA EXTENDIDA
-
+        boolean salir = false;
+        Calendar fechaCalendar = Calendar.getInstance();
+        fechaCalendar.setTime(this.getPrimero().fecha);
+        int cantidad, op = 0;
+        while (salir != true) {
+            cantidad = 0;
+            try {
+                op = Integer.parseInt(JOptionPane.showInputDialog(null,
+                        "1.Aplazar por cantidad de años\n"
+                        + "2.Aplazar por cantidad de meses\n"
+                        + "3.Aplazar por cantidad de dias\n"
+                        + "4.Aplazar por cantidad de horas\n"
+                        + "5.Aplazar por cantidad de minutos\n"
+                        + "6.Volver al menu principal\n", "Actualizar Primer Dato", 3));
+                switch (op) {
+                    case 1:
+                        cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de años", 1));
+                        fechaCalendar.add(Calendar.YEAR, cantidad);
+                        break;
+                    case 2:
+                        cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de meses", 1));
+                        fechaCalendar.add(Calendar.MONTH, cantidad);
+                        break;
+                    case 3:
+                        cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de dias", 1));
+                        fechaCalendar.add(Calendar.DATE, cantidad);
+                        break;
+                    case 4:
+                        cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de horas", 1));
+                        fechaCalendar.add(Calendar.HOUR, cantidad);
+                        break;
+                    case 5:
+                        cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de minutos", 1));
+                        fechaCalendar.add(Calendar.MINUTE, cantidad);
+                        break;
+                    case 6:
+                        salir = true;
+                        break;
+                    default:
+                        break;
+                }
+            } catch (java.lang.NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Solo numeros enteros", "Error", 0);
+            }
+            if (op != 6) {
+                this.insertarFecha123(fechaCalendar.getTime()).getCola().insertarTarea(this.getPrimero().getCola().getPrimero().getDato());
+                this.atender();
+            }
+        }
     }
 
     public void extraerPrimerDato() {    //PEDIDO (4) - EXTRAER PRIMER DATO Y MOSTRAR SU INFO (NO VOLVER A METER EL DATO)
-        //Hacer uso de la funcion leerTarea y buscarNodoPrioridad(Usando la fecha actual)
+        this.consultarPrimerDato();
+        this.atender();
     }
 }
