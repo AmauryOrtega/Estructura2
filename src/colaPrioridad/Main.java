@@ -23,7 +23,8 @@ public class Main {
                         + "7.Imprimir Tareas de una fecha en especifico\n"
                         + "8.Guardar Tareas\n"
                         + "9.Leer Tareas\n"
-                        + "10.Salir\n", "Cola de prioridad v1.1", 3));
+                        + "10.Comparar Tareas\n"
+                        + "11.Salir\n", "Cola de prioridad v1.1", 3));
                 switch (op) {
                     case 1:
                         try {
@@ -52,13 +53,18 @@ public class Main {
                         JOptionPane.showMessageDialog(null, colaP.imprimirListaTareas(), "Lista de todas las tareas", 1);
                         break;
                     case 7:
-                        Date fechaAux = new Date();
-                        DateFormat formato = new SimpleDateFormat("dd/MM/yyy HH:mm");
-                        try {
-                            fechaAux = (Date) formato.parse(JOptionPane.showInputDialog(null, "Ingrese la fecha", "Imprimir Lista de tareas de una fecha", 1));
-                            JOptionPane.showMessageDialog(null, colaP.imprimirListaTareas(fechaAux), "Lista de todas las tareas", 1);
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, "\"Porfavor use el formato dado dd/MM/yyy HH:mm\\nEjemplo: 30/10/2015 15:30\"", "Error", 0);
+                        if (!colaP.isVacia()) {
+
+                            Date fechaAux = new Date();
+                            DateFormat formato = new SimpleDateFormat("dd/MM/yyy HH:mm");
+                            try {
+                                fechaAux = (Date) formato.parse(JOptionPane.showInputDialog(null, "Ingrese la fecha", "Imprimir Lista de tareas de una fecha", 1));
+                                JOptionPane.showMessageDialog(null, colaP.imprimirListaTareas(fechaAux), "Lista de todas las tareas", 1);
+                            } catch (Exception e) {
+                                JOptionPane.showMessageDialog(null, "\"Porfavor use el formato dado dd/MM/yyy HH:mm\\nEjemplo: 30/10/2015 15:30\"", "Error", 0);
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null, "No existen tareas en la cola", "Error", 0);
                         }
                         break;
                     case 8:
@@ -68,6 +74,9 @@ public class Main {
                         colaP = ArchivoBinario.leer();
                         break;
                     case 10:
+                        colaP.comparar();
+                        break;
+                    case 11:
                         salir = true;
                         break;
                     default:

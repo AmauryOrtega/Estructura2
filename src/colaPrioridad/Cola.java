@@ -93,4 +93,15 @@ public class Cola implements Serializable{
         }
         return false;
     }
+    
+    public Tarea buscarTarea2(String tarea) {
+        Tarea aux = primero;
+        while (aux != null) {
+            if (aux.getDato().equals(tarea)) {
+                return aux;
+            }
+            aux = aux.getSiguiente();
+        }
+        return null;
+    }
 }

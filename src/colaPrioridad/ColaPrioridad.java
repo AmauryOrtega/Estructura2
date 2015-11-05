@@ -292,67 +292,116 @@ public class ColaPrioridad implements Serializable {
 
     public void consultarPrimerDato() {  //PEDIDO (2) - RETORNAR TAREA CON FECHA Y HORA MAS ANTIGUA
         if (isVacia()) {
-            JOptionPane.showMessageDialog(null, "La cola esta vacia", "Primera Tarea", 1);
+            JOptionPane.showMessageDialog(null, "No existen tareas en la cola", "Error", 0);
         } else {
             JOptionPane.showMessageDialog(null, imprimirTarea(this.getPrimero().getCola().getPrimero().getDato()), "Primera Tarea", 1);
         }
     }
 
     public void actualizarPrimerDato() { //PEDIDO (3) - EXTRAER PRIMER DATO Y VOLVERLO A PONER CON FECHA EXTENDIDA
-        boolean salir = false;
-        this.consultarPrimerDato();//Mostrar la tarea a modificar
-        Calendar fechaCalendar = Calendar.getInstance();
-        fechaCalendar.setTime(this.getPrimero().fecha);
-        int cantidad, op = 0;
-        while (salir != true) {
-            cantidad = 0;
-            try {
-                op = Integer.parseInt(JOptionPane.showInputDialog(null,
-                        "1.Aplazar por cantidad de años\n"
-                        + "2.Aplazar por cantidad de meses\n"
-                        + "3.Aplazar por cantidad de dias\n"
-                        + "4.Aplazar por cantidad de horas\n"
-                        + "5.Aplazar por cantidad de minutos\n"
-                        + "6.Volver al menu principal\n", "Actualizar Primer Dato", 3));
-                switch (op) {
-                    case 1:
-                        cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de años", 1));
-                        fechaCalendar.add(Calendar.YEAR, cantidad);
-                        break;
-                    case 2:
-                        cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de meses", 1));
-                        fechaCalendar.add(Calendar.MONTH, cantidad);
-                        break;
-                    case 3:
-                        cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de dias", 1));
-                        fechaCalendar.add(Calendar.DATE, cantidad);
-                        break;
-                    case 4:
-                        cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de horas", 1));
-                        fechaCalendar.add(Calendar.HOUR, cantidad);
-                        break;
-                    case 5:
-                        cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de minutos", 1));
-                        fechaCalendar.add(Calendar.MINUTE, cantidad);
-                        break;
-                    case 6:
-                        salir = true;
-                        break;
-                    default:
-                        break;
+        if (!isVacia()) {
+            boolean salir = false;
+            this.consultarPrimerDato();//Mostrar la tarea a modificar
+            Calendar fechaCalendar = Calendar.getInstance();
+            fechaCalendar.setTime(this.getPrimero().fecha);
+            int cantidad, op = 0;
+            while (salir != true) {
+                cantidad = 0;
+                try {
+                    op = Integer.parseInt(JOptionPane.showInputDialog(null,
+                            "1.Aplazar por cantidad de años\n"
+                            + "2.Aplazar por cantidad de meses\n"
+                            + "3.Aplazar por cantidad de dias\n"
+                            + "4.Aplazar por cantidad de horas\n"
+                            + "5.Aplazar por cantidad de minutos\n"
+                            + "6.Volver al menu principal\n", "Actualizar Primer Dato", 3));
+                    switch (op) {
+                        case 1:
+                            cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de años", 1));
+                            fechaCalendar.add(Calendar.YEAR, cantidad);
+                            break;
+                        case 2:
+                            cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de meses", 1));
+                            fechaCalendar.add(Calendar.MONTH, cantidad);
+                            break;
+                        case 3:
+                            cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de dias", 1));
+                            fechaCalendar.add(Calendar.DATE, cantidad);
+                            break;
+                        case 4:
+                            cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de horas", 1));
+                            fechaCalendar.add(Calendar.HOUR, cantidad);
+                            break;
+                        case 5:
+                            cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", "Cantidad de minutos", 1));
+                            fechaCalendar.add(Calendar.MINUTE, cantidad);
+                            break;
+                        case 6:
+                            salir = true;
+                            break;
+                        default:
+                            break;
+                    }
+                } catch (java.lang.NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Solo numeros enteros", "Error", 0);
                 }
-            } catch (java.lang.NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Solo numeros enteros", "Error", 0);
+                if (op != 6) {
+                    this.insertarFecha123(fechaCalendar.getTime()).getCola().insertarTarea(this.getPrimero().getCola().getPrimero().getDato());
+                    this.atender();
+                }
             }
-            if (op != 6) {
-                this.insertarFecha123(fechaCalendar.getTime()).getCola().insertarTarea(this.getPrimero().getCola().getPrimero().getDato());
-                this.atender();
-            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No existen tareas en la cola", "Error", 0);
         }
     }
 
     public void extraerPrimerDato() {    //PEDIDO (4) - EXTRAER PRIMER DATO Y MOSTRAR SU INFO (NO VOLVER A METER EL DATO)
-        this.consultarPrimerDato();
-        this.atender();
+        if (!isVacia()) {
+            this.consultarPrimerDato();
+            this.atender();
+        } else {
+            JOptionPane.showMessageDialog(null, "No existen tareas en la cola", "Error", 0);
+        }
+    }
+
+    public void comparar() {
+        if (isVacia()) {
+            JOptionPane.showMessageDialog(null, "No existen tareas en la cola para comparar", "Error", 0);
+        } else {
+
+            String tarea1 = "", tarea2 = "";
+            Tarea task1 = null, task2 = null;
+
+            JOptionPane.showMessageDialog(null, this.imprimirListaTareas(), "Lista de todas las tareas", 1);
+
+            try {
+                tarea1 = JOptionPane.showInputDialog(null, "Ingrese la tarea1\n(sin la fecha)", "Tarea 1", 3);
+                tarea2 = JOptionPane.showInputDialog(null, "Ingrese la tarea2\n(sin la fecha)", "Tarea 2", 3);
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, "Entrada invalida", "Error", 0);
+            }
+
+            try {
+                task1 = this.buscarNodoPrioridad(this.buscarTarea(tarea1)).getCola().buscarTarea2(tarea1);
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, "La tarea 1 \"" + tarea1 + "\" No existe", "Error", 0);
+            }
+            try {
+                task2 = this.buscarNodoPrioridad(this.buscarTarea(tarea2)).getCola().buscarTarea2(tarea2);
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, "La tarea 2 \"" + tarea2 + "\" No existe", "Error", 0);
+            }
+            if (task1 != null && task2 != null) {
+                JOptionPane.showMessageDialog(null, "Tarea1: " + this.imprimirTarea(task1.getDato()) + "\nTarea2: " + this.imprimirTarea(task2.getDato()), "Tareas seleccionadas", JOptionPane.INFORMATION_MESSAGE);
+                if (this.antesDe(task1, task2)) {
+                    JOptionPane.showMessageDialog(null, "La tarea "+this.imprimirTarea(task1.getDato())+" Es antes que "+this.imprimirTarea(task2.getDato()), "Resultado", JOptionPane.INFORMATION_MESSAGE);
+                } else if (this.despuesDe(task1, task2)) {
+                    JOptionPane.showMessageDialog(null, "La tarea "+this.imprimirTarea(task1.getDato())+" Es despues que "+this.imprimirTarea(task2.getDato()), "Resultado", JOptionPane.INFORMATION_MESSAGE);
+                } else if (this.igual(task1, task2)) {
+                    JOptionPane.showMessageDialog(null, "Las tareas "+this.imprimirTarea(task1.getDato())+" y "+this.imprimirTarea(task2.getDato())+" Suceden al mismo tiempo", "Resultado", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+
+        }
     }
 }
