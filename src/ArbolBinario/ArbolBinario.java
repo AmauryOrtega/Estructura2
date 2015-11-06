@@ -83,12 +83,12 @@ public class ArbolBinario {
         } else {
             if (this.esHoja()) {
                 return (1 + raiz.getHijoDerecho().cantidadHojas() + raiz.getHijoIzquierdo().cantidadHojas());
-            }else{
+            } else {
                 return (raiz.getHijoDerecho().cantidadHojas() + raiz.getHijoIzquierdo().cantidadHojas());
             }
         }
     }
-    
+
     public int altura() {
         if (esVacio()) {
             return 0;
@@ -221,3 +221,35 @@ public class ArbolBinario {
     }
 
 }
+
+/*
+PARCIAL 
+boolean esVacio(){return (raiz == null);}
+boolean esHoja(){return (raiz.getHijoIzquierdo()).esVacio() && (raiz.getHijoDerecho()).esVacio();}
+int altura(Nodo local) {
+    if (local.esVacio()) {
+        return 0;
+    } else {
+        return (1 + Math.max(((local.getHijoIzquierdo()).altura()), ((local.getHijoDerecho()).altura())));
+    }
+}
+int cantidad(Nodo local) {
+    if (local.esVacio()) {
+        return 0;
+    } else {
+        return (1 + local.getHijoDerecho().cantidad() + local.getHijoIzquierdo().cantidad());
+    }
+}
+int cantidadHojas(Nodo local) {
+    if (local.esVacio()) {
+        return 0;
+    } else {
+        if (this.esHoja()) {
+            return (1 + local.getHijoDerecho().cantidadHojas() + local.getHijoIzquierdo().cantidadHojas());
+        } else {
+            return (local.getHijoDerecho().cantidadHojas() + local.getHijoIzquierdo().cantidadHojas());
+        }
+    }
+}
+
+*/
