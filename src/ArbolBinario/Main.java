@@ -53,6 +53,7 @@ public class Main {
                         JOptionPane.showMessageDialog(null, "El arbol tiene\n"
                                 + "Altura: "+arbol.altura()+"\n"
                                 + "Cantidad de nodos: "+arbol.cantidad()+"\n"
+                                + "Cantidad de hojas: "+arbol.cantidadHojas()+"\n"
                                 + "Nodo max: "+arbol.max()+"\n"
                                 + "Nodo min: "+arbol.min()+"\n"
                                 , "Resumen", 2);

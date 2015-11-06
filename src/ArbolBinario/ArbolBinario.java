@@ -77,6 +77,18 @@ public class ArbolBinario {
         }
     }
 
+    public int cantidadHojas() {
+        if (esVacio()) {
+            return 0;
+        } else {
+            if (this.esHoja()) {
+                return (1 + raiz.getHijoDerecho().cantidadHojas() + raiz.getHijoIzquierdo().cantidadHojas());
+            }else{
+                return (raiz.getHijoDerecho().cantidadHojas() + raiz.getHijoIzquierdo().cantidadHojas());
+            }
+        }
+    }
+    
     public int altura() {
         if (esVacio()) {
             return 0;
